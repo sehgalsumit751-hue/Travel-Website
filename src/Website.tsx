@@ -1,24 +1,26 @@
+import { useState } from 'react';
 import sehgalLogo from './assets/sehgal-logo.jpeg';
 
 export default function SehgalTravelsLandingPage() {
+  const [showContact, setShowContact] = useState(false);
   const packages = [
     {
       title: 'Himachal Tour',
       days: '5 Days / 4 Nights',
       image:
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop',
     },
     {
       title: 'Kashmir Paradise',
       days: '6 Days / 5 Nights',
       image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600&auto=format&fit=crop',
     },
     {
       title: 'Goa Vacation',
       days: '4 Days / 3 Nights',
       image:
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop',
     },
   ];
 
@@ -71,6 +73,10 @@ export default function SehgalTravelsLandingPage() {
             <img
               src={sehgalLogo}
               alt="Sehgal Travels Logo"
+              width={56}
+              height={56}
+              fetchPriority="high"
+              decoding="async"
               className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-orange-400 shadow-md flex-shrink-0"
             />
             <div className="leading-tight">
@@ -109,8 +115,10 @@ export default function SehgalTravelsLandingPage() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
         <img
-          src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1800&auto=format&fit=crop"
-          alt="Travel Background"
+          src="https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=1800&auto=format&fit=crop"
+          alt="Golden Temple Amritsar"
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -135,7 +143,10 @@ export default function SehgalTravelsLandingPage() {
               Explore Packages
             </button>
 
-            <button className="border border-white hover:bg-white hover:text-black transition px-8 py-4 rounded-full font-semibold text-lg">
+            <button
+              onClick={() => setShowContact(true)}
+              className="border border-white hover:bg-white hover:text-black transition px-8 py-4 rounded-full font-semibold text-lg"
+            >
               Contact Us
             </button>
           </div>
@@ -178,8 +189,10 @@ export default function SehgalTravelsLandingPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1400&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop"
               alt="Travel"
+              loading="lazy"
+              decoding="async"
               className="rounded-[40px] shadow-2xl w-full h-[500px] object-cover"
             />
           </div>
@@ -239,6 +252,8 @@ export default function SehgalTravelsLandingPage() {
                   <img
                     src={car.image}
                     alt={car.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover hover:scale-110 transition duration-500"
                   />
 
@@ -288,6 +303,8 @@ export default function SehgalTravelsLandingPage() {
                   <img
                     src={item.image}
                     alt={item.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                   />
                 </div>
@@ -319,6 +336,8 @@ export default function SehgalTravelsLandingPage() {
         <img
           src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop"
           alt="Adventure"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -340,35 +359,64 @@ export default function SehgalTravelsLandingPage() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
-          <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
-            Contact Us
-          </p>
+      <section id="contact" className="py-24 bg-linear-to-br from-gray-50 to-orange-50">
+        <div className="max-w-5xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-14">
+            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-3">
+              Get In Touch
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">
+              Let’s Plan Your Journey
+            </h2>
+            <p className="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+              Reach out to Sehgal Travels for customized travel packages, bookings, and travel assistance.
+            </p>
+          </div>
 
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Let’s Plan Your Journey
-          </h2>
-
-          <p className="text-gray-600 text-lg mb-10 leading-relaxed">
-            Contact Sehgal Travels for customized travel packages,
-            bookings, and travel assistance.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="bg-gray-100 rounded-2xl p-5">
-              <p className="font-semibold">Phone</p>
-              <p className="text-gray-600">+91 XXXXX XXXXX</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {/* Phone */}
+            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                📞
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Phone</p>
+                <p className="text-gray-700 font-medium">+91 9779150658</p>
+                <p className="text-gray-700 font-medium mt-1">
+                  <a href="tel:+917814635511" className="text-blue-600 underline hover:text-blue-800 transition">+91 7814635511</a>
+                </p>
+              </div>
             </div>
 
-            <div className="bg-gray-100 rounded-2xl p-5">
-              <p className="font-semibold">Email</p>
-              <p className="text-gray-600">sehgaltravels@gmail.com</p>
+            {/* Email */}
+            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                ✉️
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Email</p>
+                <a
+                  href="mailto:info@sehgaltravels.com"
+                  className="text-blue-600 underline hover:text-blue-800 transition font-medium break-all"
+                >
+                  info@sehgaltravels.com
+                </a>
+              </div>
             </div>
 
-            <div className="bg-gray-100 rounded-2xl p-5">
-              <p className="font-semibold">Location</p>
-              <p className="text-gray-600">Punjab, India</p>
+            {/* Location */}
+            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                📍
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Location</p>
+                <p className="text-gray-700 font-medium leading-relaxed">
+                  1120, Hussainpura<br />
+                  Amritsar – 143001<br />
+                  Punjab, India
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -381,6 +429,10 @@ export default function SehgalTravelsLandingPage() {
             <img
               src={sehgalLogo}
               alt="Sehgal Travels Logo"
+              width={48}
+              height={48}
+              loading="lazy"
+              decoding="async"
               className="w-12 h-12 rounded-full object-cover border-2 border-orange-400 flex-shrink-0"
             />
             <div className="leading-tight">
@@ -407,6 +459,51 @@ export default function SehgalTravelsLandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Contact Popup */}
+      {showContact && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          onClick={() => setShowContact(false)}
+        >
+          <div
+            className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm mx-4 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowContact(false)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition text-lg"
+            >
+              ✕
+            </button>
+
+            <div className="text-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl mx-auto mb-4">
+                📞
+              </div>
+              <h3 className="text-2xl font-black text-gray-900">Call Us</h3>
+              <p className="text-gray-500 text-sm mt-1">Tap a number to dial directly</p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <a
+                href="tel:+919779150658"
+                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
+              >
+                <span className="text-gray-800 font-semibold text-lg">+91 9779150658</span>
+                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
+              </a>
+              <a
+                href="tel:+917814635511"
+                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
+              >
+                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
+                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
