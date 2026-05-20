@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import sehgalLogo from './assets/sehgal-logo.jpeg';
+import sehgalLogo from './assets/sehgal-logo.png';
 
 export default function SehgalTravelsLandingPage() {
   const [showContact, setShowContact] = useState(false);
@@ -172,9 +172,9 @@ export default function SehgalTravelsLandingPage() {
           ].map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl transition duration-300"
+              className="bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl transition duration-300 text-center"
             >
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-2xl">
+              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-2xl mx-auto">
                 ✈️
               </div>
               <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
@@ -270,9 +270,15 @@ export default function SehgalTravelsLandingPage() {
                     for your journey.
                   </p>
 
-                  <button className="bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-full font-semibold w-full">
-                    Book Now
-                  </button>
+                  <div className="relative mt-4">
+                    <span className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-50"></span>
+                    <a
+                      href={index === 0 ? 'tel:+919779150658' : 'tel:+917814635511'}
+                      className="relative block bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-full font-semibold w-full text-center shadow-lg shadow-orange-500/50"
+                    >
+                      Book Now
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -352,7 +358,7 @@ export default function SehgalTravelsLandingPage() {
             Let Sehgal Travels create unforgettable journeys for you and your family.
           </p>
 
-          <button className="bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl">
+          <button className="mt-6 bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl">
             Book Your Trip
           </button>
         </div>
@@ -411,11 +417,16 @@ export default function SehgalTravelsLandingPage() {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Location</p>
-                <p className="text-gray-700 font-medium leading-relaxed">
+                <a
+                  href="https://maps.app.goo.gl/UBLX9SuqNgzD1BzaA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 font-medium leading-relaxed hover:text-orange-500 transition underline underline-offset-2"
+                >
                   1120, Hussainpura<br />
                   Amritsar – 143001<br />
                   Punjab, India
-                </p>
+                </a>
               </div>
             </div>
           </div>
@@ -456,6 +467,14 @@ export default function SehgalTravelsLandingPage() {
             <a href="#contact" className="hover:text-orange-400">
               Contact
             </a>
+          </div>
+        </div>
+
+        {/* Copyright Bar */}
+        <div className="border-t border-white/10 mt-8 pt-6">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
+            <p>© {new Date().getFullYear()} Sehgal Travels. All rights reserved.</p>
+            <p>Designed &amp; Developed with ❤️ for Premium Travel in Punjab</p>
           </div>
         </div>
       </footer>
