@@ -218,13 +218,16 @@ export default function SehgalTravelsLandingPage() {
             <a href="#packages" className="hover:text-orange-500 transition">
               Packages
             </a>
+            <a href="/tourist-visa" className="hover:text-orange-500 transition">
+              Visa Services
+            </a>
             <a href="#about" className="hover:text-orange-500 transition">
               About
             </a>
             <a href="/blog" className="hover:text-orange-500 transition">
               Blog
             </a>
-            <a href="#contact" className="hover:text-orange-500 transition">
+            <a href="/contact" className="hover:text-orange-500 transition">
               Contact
             </a>
           </nav>
@@ -271,6 +274,36 @@ export default function SehgalTravelsLandingPage() {
             >
               Contact Us
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Branding / Trust Stats */}
+      <section className="py-14 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-10">
+            <p className="text-orange-400 uppercase tracking-[4px] font-semibold text-sm mb-2">Why Sehgal Travels</p>
+            <h2 className="text-3xl md:text-4xl font-black">Amritsar's Most Trusted Travel Brand</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: '10+', label: 'Years of Experience' },
+              { value: '5000+', label: 'Happy Customers' },
+              { value: '50+', label: 'Premium Vehicles' },
+              { value: '24/7', label: 'Available Always' },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <span className="text-5xl font-black text-orange-400 mb-2">{stat.value}</span>
+                <span className="text-gray-300 font-medium text-sm uppercase tracking-wide">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            {['Airport Transfers', 'Golden Temple Tours', 'Tourist Visa Services', 'Outstation Cabs', 'Wedding Cars', 'Corporate Travel'].map((tag, i) => (
+              <span key={i} className="bg-white/10 border border-orange-400/30 text-white px-4 py-2 rounded-full text-sm font-medium">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -542,6 +575,100 @@ export default function SehgalTravelsLandingPage() {
         </div>
       </section>
 
+      {/* Tourist Visa Services Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-14">
+            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">International Travel</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Tourist Visa Services</h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+              Planning an international trip? Sehgal Travels provides expert tourist visa assistance for 40+ countries. From UAE and Schengen to USA, UK, Canada, Australia, Thailand and more — we handle everything so you can focus on packing.
+            </p>
+          </div>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-14">
+            {[
+              { code: 'ae', name: 'UAE' },
+              { code: 'th', name: 'Thailand' },
+              { code: 'sg', name: 'Singapore' },
+              { code: 'gb', name: 'UK' },
+              { code: 'us', name: 'USA' },
+              { code: 'ca', name: 'Canada' },
+              { code: 'au', name: 'Australia' },
+              { code: 'fr', name: 'Schengen' },
+              { code: 'jp', name: 'Japan' },
+              { code: 'mv', name: 'Maldives' },
+              { code: 'my', name: 'Malaysia' },
+              { code: 'tr', name: 'Turkey' },
+              { code: 'id', name: 'Indonesia' },
+              { code: 'vn', name: 'Vietnam' },
+              { code: 'lk', name: 'Sri Lanka' },
+              { code: 'np', name: 'Nepal' },
+              { code: 'nz', name: 'New Zealand' },
+              { code: 'za', name: 'South Africa' },
+            ].map((c, i) => (
+              <a
+                key={i}
+                href="/tourist-visa"
+                className="bg-white border border-gray-100 hover:border-orange-300 hover:shadow-lg transition duration-300 rounded-2xl overflow-hidden flex flex-col items-center group"
+              >
+                <div className="w-full h-20 overflow-hidden bg-gray-50">
+                  <img
+                    src={`https://flagcdn.com/w160/${c.code}.png`}
+                    alt={`${c.name} flag`}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                </div>
+                <span className="py-2.5 px-2 font-semibold text-gray-800 text-xs text-center group-hover:text-orange-500 transition">
+                  {c.name}
+                </span>
+              </a>
+            ))}
+            <a
+              href="/tourist-visa"
+              className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:from-orange-600 hover:to-orange-700 transition duration-300 min-h-[96px]"
+            >
+              <span className="text-white text-3xl font-black">40+</span>
+              <span className="text-orange-100 text-xs font-semibold text-center px-2">More Countries</span>
+            </a>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              { icon: '📋', title: 'Document Assistance', desc: 'We provide a complete checklist and help you prepare every document needed for a smooth visa application.' },
+              { icon: '⚡', title: 'Fast Processing', desc: 'We file your application promptly and track its status — ensuring you receive your visa well before your travel date.' },
+              { icon: '✅', title: 'High Approval Rate', desc: 'Our experienced team ensures your application is complete and correct, maximizing your chances of approval.' },
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-3xl p-7 flex gap-5 items-start">
+                <span className="text-4xl">{item.icon}</span>
+                <div>
+                  <h3 className="font-bold text-xl mb-2">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/tourist-visa"
+              className="bg-orange-500 hover:bg-orange-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-block"
+            >
+              View All Countries & Apply →
+            </a>
+            <a
+              href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20tourist%20visa%20assistance."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-flex items-center justify-center gap-3"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              WhatsApp for Visa Enquiry
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
@@ -653,9 +780,11 @@ export default function SehgalTravelsLandingPage() {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Phone</p>
-                <p className="text-gray-700 font-medium">+91 9779150658</p>
+                <p className="text-gray-700 font-medium">
+                  <a href="tel:+917814635511" className="hover:text-orange-500 transition">+91 7814635511</a>
+                </p>
                 <p className="text-gray-700 font-medium mt-1">
-                  <a href="tel:+917814635511" className="text-blue-600 underline hover:text-blue-800 transition">+91 7814635511</a>
+                  <a href="tel:+919779150658" className="hover:text-orange-500 transition">+91 9779150658</a>
                 </p>
               </div>
             </div>
@@ -720,22 +849,13 @@ export default function SehgalTravelsLandingPage() {
             </div>
           </div>
 
-          <div className="flex gap-6 text-gray-300 text-sm">
-            <a href="#home" className="hover:text-orange-400">
-              Home
-            </a>
-            <a href="#services" className="hover:text-orange-400">
-              Services
-            </a>
-            <a href="#packages" className="hover:text-orange-400">
-              Packages
-            </a>
-            <a href="/blog" className="hover:text-orange-400">
-              Blog
-            </a>
-            <a href="#contact" className="hover:text-orange-400">
-              Contact
-            </a>
+          <div className="flex flex-wrap gap-6 text-gray-300 text-sm">
+            <a href="#home" className="hover:text-orange-400">Home</a>
+            <a href="#services" className="hover:text-orange-400">Services</a>
+            <a href="#packages" className="hover:text-orange-400">Packages</a>
+            <a href="/tourist-visa" className="hover:text-orange-400">Visa Services</a>
+            <a href="/blog" className="hover:text-orange-400">Blog</a>
+            <a href="/contact" className="hover:text-orange-400">Contact</a>
           </div>
         </div>
 
@@ -747,6 +867,19 @@ export default function SehgalTravelsLandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20travel%20assistance."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 transition hover:scale-110"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+      </a>
 
       {/* Contact Popup */}
       {showContact && (
@@ -775,17 +908,17 @@ export default function SehgalTravelsLandingPage() {
 
             <div className="flex flex-col gap-4">
               <a
-                href="tel:+917814635511"
-                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
-              >
-                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
-                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
-              </a>
-              <a
                 href="tel:+919779150658"
                 className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
               >
                 <span className="text-gray-800 font-semibold text-lg">+91 9779150658</span>
+                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
+              </a>
+              <a
+                href="tel:+917814635511"
+                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
+              >
+                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
                 <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
               </a>
             </div>

@@ -6,6 +6,8 @@ import AmritsarTaxiGuide from './pages/blogs/AmritsarTaxiGuide'
 import AmritsarChandigarh from './pages/blogs/AmritsarChandigarh'
 import GoldenTempleTour from './pages/blogs/GoldenTempleTour'
 import InnovaCrysta from './pages/blogs/InnovaCrysta'
+import TouristVisa from './pages/TouristVisa'
+import Contact from './pages/Contact'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/blog/amritsar-to-chandigarh-taxi" element={<AmritsarChandigarh />} />
           <Route path="/blog/golden-temple-tour-guide" element={<GoldenTempleTour />} />
           <Route path="/blog/innova-crysta-rent-punjab" element={<InnovaCrysta />} />
+          <Route path="/tourist-visa" element={<TouristVisa />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
