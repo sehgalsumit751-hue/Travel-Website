@@ -24,7 +24,7 @@ export const SeoMeta: React.FC<SeoMetaProps> = ({
     "url": siteUrl,
     "logo": `${siteUrl}/assets/sehgal-logo.png`,
     "priceRange": "₹₹",
-    "telephone": "+91XXXXXXXXXX",
+    "telephone": "+919779150658",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Amritsar",

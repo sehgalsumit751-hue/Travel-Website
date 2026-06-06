@@ -4,7 +4,7 @@ export const FloatingCTA: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full z-50 flex md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
       <a
-        href="https://wa.me/91XXXXXXXXXX"
+        href="https://wa.me/919779150658"
         target="_blank"
         rel="noopener noreferrer"
         className="flex-1 bg-green-500 text-white font-semibold flex items-center justify-center py-4 transition-colors hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-inset"
@@ -29,7 +29,7 @@ export const FloatingCTA: React.FC = () => {
         WhatsApp
       </a>
       <a
-        href="tel:+91XXXXXXXXXX"
+        href="tel:+917814635511"
         className="flex-1 bg-blue-600 text-white font-semibold flex items-center justify-center py-4 transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
         aria-label="Call Now"
       >
