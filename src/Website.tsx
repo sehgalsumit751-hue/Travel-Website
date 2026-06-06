@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import sehgalLogo from './assets/sehgal-logo.png';
+import { FloatingCTA } from './components/FloatingCTA';
+import { InquiryForm } from './components/InquiryForm';
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -218,18 +221,18 @@ export default function SehgalTravelsLandingPage() {
             <a href="#packages" className="hover:text-orange-500 transition">
               Packages
             </a>
-            <a href="/tourist-visa" className="hover:text-orange-500 transition">
+            <Link to="/tourist-visa" className="hover:text-orange-500 transition">
               Visa Services
-            </a>
+            </Link>
             <a href="#about" className="hover:text-orange-500 transition">
               About
             </a>
-            <a href="/blog" className="hover:text-orange-500 transition">
+            <Link to="/blog" className="hover:text-orange-500 transition">
               Blog
-            </a>
-            <a href="/contact" className="hover:text-orange-500 transition">
+            </Link>
+            <Link to="/contact" className="hover:text-orange-500 transition">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -278,12 +281,25 @@ export default function SehgalTravelsLandingPage() {
         </div>
       </section>
 
+      {/* Inquiry Form Section */}
+      <section className="relative -mt-16 md:-mt-24 z-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="bg-white rounded-[30px] shadow-2xl p-6 md:p-10 border border-gray-100 flex flex-col md:flex-row items-center gap-10">
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Book Your Cab Instantly</h2>
+            <p className="text-gray-600 text-lg">Get a quick quote for local, outstation, or airport transfers. Fast, reliable, and premium service.</p>
+          </div>
+          <div className="flex-1 w-full">
+            <InquiryForm />
+          </div>
+        </div>
+      </section>
+
       {/* Branding / Trust Stats */}
       <section className="py-14 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-10">
             <p className="text-orange-400 uppercase tracking-[4px] font-semibold text-sm mb-2">Why Sehgal Travels</p>
-            <h2 className="text-3xl md:text-4xl font-black">Amritsar's Most Trusted Travel Brand</h2>
+            <h2 className="text-3xl md:text-4xl font-black">Amritsar&apos;s Most Trusted Travel Brand</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -606,9 +622,9 @@ export default function SehgalTravelsLandingPage() {
               { code: 'nz', name: 'New Zealand' },
               { code: 'za', name: 'South Africa' },
             ].map((c, i) => (
-              <a
+              <Link
                 key={i}
-                href="/tourist-visa"
+                to="/tourist-visa"
                 className="bg-white border border-gray-100 hover:border-orange-300 hover:shadow-lg transition duration-300 rounded-2xl overflow-hidden flex flex-col items-center group"
               >
                 <div className="w-full h-20 overflow-hidden bg-gray-50">
@@ -622,15 +638,15 @@ export default function SehgalTravelsLandingPage() {
                 <span className="py-2.5 px-2 font-semibold text-gray-800 text-xs text-center group-hover:text-orange-500 transition">
                   {c.name}
                 </span>
-              </a>
+              </Link>
             ))}
-            <a
-              href="/tourist-visa"
+            <Link
+              to="/tourist-visa"
               className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:from-orange-600 hover:to-orange-700 transition duration-300 min-h-[96px]"
             >
               <span className="text-white text-3xl font-black">40+</span>
               <span className="text-orange-100 text-xs font-semibold text-center px-2">More Countries</span>
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
@@ -648,12 +664,12 @@ export default function SehgalTravelsLandingPage() {
             ))}
           </div>
           <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/tourist-visa"
+            <Link
+              to="/tourist-visa"
               className="bg-orange-500 hover:bg-orange-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-block"
             >
               View All Countries & Apply →
-            </a>
+            </Link>
             <a
               href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20tourist%20visa%20assistance."
               target="_blank"
@@ -710,7 +726,7 @@ export default function SehgalTravelsLandingPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {blogPosts.map((post, index) => (
-              <a key={index} href={post.href} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group block">
+              <Link key={index} to={post.href} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group block">
                 <div className="h-48 overflow-hidden">
                   <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                 </div>
@@ -719,13 +735,13 @@ export default function SehgalTravelsLandingPage() {
                   <h3 className="text-base font-bold mt-2 mb-3 text-gray-900 group-hover:text-orange-500 transition leading-snug">{post.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{post.excerpt}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-12">
-            <a href="/blog" className="inline-block bg-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg">
+            <Link to="/blog" className="inline-block bg-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg">
               View All Articles →
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -853,9 +869,9 @@ export default function SehgalTravelsLandingPage() {
             <a href="#home" className="hover:text-orange-400">Home</a>
             <a href="#services" className="hover:text-orange-400">Services</a>
             <a href="#packages" className="hover:text-orange-400">Packages</a>
-            <a href="/tourist-visa" className="hover:text-orange-400">Visa Services</a>
-            <a href="/blog" className="hover:text-orange-400">Blog</a>
-            <a href="/contact" className="hover:text-orange-400">Contact</a>
+            <Link to="/tourist-visa" className="hover:text-orange-400">Visa Services</Link>
+            <Link to="/blog" className="hover:text-orange-400">Blog</Link>
+            <Link to="/contact" className="hover:text-orange-400">Contact</Link>
           </div>
         </div>
 
@@ -880,6 +896,9 @@ export default function SehgalTravelsLandingPage() {
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
       </a>
+
+      {/* Floating Mobile CTA */}
+      <FloatingCTA />
 
       {/* Contact Popup */}
       {showContact && (
@@ -911,7 +930,7 @@ export default function SehgalTravelsLandingPage() {
                 href="tel:+919779150658"
                 className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
               >
-                <span className="text-gray-800 font-semibold text-lg">+91 9779150658</span>
+                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
                 <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
               </a>
               <a
