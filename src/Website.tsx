@@ -930,7 +930,7 @@ export default function SehgalTravelsLandingPage() {
                 href="tel:+919779150658"
                 className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
               >
-                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
+                <span className="text-gray-800 font-semibold text-lg">+91 9779150658</span>
                 <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
               </a>
               <a
