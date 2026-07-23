@@ -29,7 +29,7 @@ export const FloatingCTA: React.FC = () => {
         WhatsApp
       </a>
       <a
-        href="tel:+917814635511"
+        href="tel:+919779150658"
         className="flex-1 bg-blue-600 text-white font-semibold flex items-center justify-center py-4 transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
         aria-label="Call Now"
       >
