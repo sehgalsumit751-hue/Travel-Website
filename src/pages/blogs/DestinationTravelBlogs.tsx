@@ -784,7 +784,7 @@ export function DestinationTravelBlogPost() {
             <time className="text-xs text-gray-500" dateTime="2026-10-27">October 2026</time>
           </div>
           <h1 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">{post.title}</h1>
-          <img src={post.image} alt={post.title} className="w-full h-64 md:h-96 object-cover rounded-2xl mt-8" fetchPriority="high" />
+          <img src={post.image} alt={post.title} className="w-full h-64 md:h-96 object-cover rounded-2xl mt-8" loading="eager" />
           <div className="prose max-w-none text-gray-700 leading-relaxed mt-8 space-y-6">
             <p className="text-lg">{post.intro}</p>
             {post.sections.map((section) => (

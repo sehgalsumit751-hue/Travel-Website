@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+const getActiveCallNumber = () => {
+  const hour = Number(
+    new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      hourCycle: 'h23',
+    }).format(new Date()),
+  );
+
+  return hour % 2 === 1 ? 'tel:+919779150658' : 'tel:+917814635511';
+};
 
 export const FloatingCTA: React.FC = () => {
+  const [callNumber, setCallNumber] = useState(getActiveCallNumber);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCallNumber(getActiveCallNumber());
+    }, 60_000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="fixed bottom-0 left-0 w-full z-50 flex md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
       <a
@@ -29,9 +51,10 @@ export const FloatingCTA: React.FC = () => {
         WhatsApp
       </a>
       <a
-        href="tel:+919779150658"
-        className="flex-1 bg-blue-600 text-white font-semibold flex items-center justify-center py-4 transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+        href={callNumber}
+        className="flex-1 bg-blue-600 text-white font-semibold flex items-center justify-center gap-2 py-4 transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
         aria-label="Call Now"
+        title="Call Now"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +66,7 @@ export const FloatingCTA: React.FC = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="mr-2 h-5 w-5"
+          className="h-5 w-5"
         >
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>

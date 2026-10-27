@@ -194,22 +194,85 @@ export default function SehgalTravelsLandingPage() {
 
   const packages = [
     {
-      title: "Himachal Tour",
+      title: "Himachal Mountain Romance",
+      category: "Domestic",
       days: "5 Days / 4 Nights",
+      description:
+        "Share cozy mountain stays, scenic drives, and quiet moments in Shimla and Manali.",
       image:
         "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop",
     },
     {
-      title: "Kashmir Paradise",
+      title: "Kashmir for Two",
+      category: "Domestic",
       days: "6 Days / 5 Nights",
+      description:
+        "Take in lakeside sunsets, houseboat stays, and the mountain scenery of Kashmir.",
       image:
         "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600&auto=format&fit=crop",
     },
     {
-      title: "Goa Vacation",
+      title: "Goa Beach Escape",
+      category: "Domestic",
       days: "4 Days / 3 Nights",
+      description:
+        "Enjoy relaxed beach days, sunset walks, and a private escape on Goa's coast.",
       image:
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Udaipur Royal Getaway",
+      category: "Domestic",
+      days: "4 Days / 3 Nights",
+      description:
+        "Discover lakeside views, heritage charm, and a romantic stay in the City of Lakes.",
+      image:
+        "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Kerala Backwater Retreat",
+      category: "Domestic",
+      days: "5 Days / 4 Nights",
+      description:
+        "Unwind together with a peaceful houseboat cruise and lush backwater scenery.",
+      image:
+        "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Maldives Island Escape",
+      category: "International",
+      days: "5 Days / 4 Nights",
+      description:
+        "Spend unhurried days by turquoise water with a memorable island stay for two.",
+      image:
+        "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Bali Couples Retreat",
+      category: "International",
+      days: "6 Days / 5 Nights",
+      description:
+        "Balance tropical beaches, tranquil landscapes, and time to explore Bali together.",
+      image:
+        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Paris City of Love",
+      category: "International",
+      days: "5 Days / 4 Nights",
+      description:
+        "Make time for iconic Paris landmarks, charming neighborhoods, and café evenings.",
+      image:
+        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      title: "Swiss Alps Romance",
+      category: "International",
+      days: "7 Days / 6 Nights",
+      description:
+        "Take in alpine scenery, picturesque villages, and scenic rail journeys for two.",
+      image:
+        "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=600&auto=format&fit=crop",
     },
   ];
 
@@ -404,9 +467,9 @@ export default function SehgalTravelsLandingPage() {
         {/* Hero Section */}
         <section id="home" className="landing-hero relative flex items-center overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=1800&auto=format&fit=crop"
-            alt="Golden Temple Amritsar"
-            fetchPriority="high"
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop"
+            alt="Golden Gate Bridge scenic background"
+            loading="eager"
             decoding="async"
             className="landing-hero-image absolute inset-0 w-full h-full object-cover"
           />
@@ -415,7 +478,8 @@ export default function SehgalTravelsLandingPage() {
             <div className="landing-hero-copy">
               <p className="landing-eyebrow">SEHGAL TRAVELS · AMRITSAR</p>
               <h1 className="landing-hero-title">
-                Cabs, Tours & Airport Transfers <span>in Amritsar & Punjab</span>
+                Cabs, Tours & Airport Transfers
+                <span>in Amritsar, Punjab</span>
               </h1>
               <p className="landing-hero-description">
                 Book a local cab, airport pickup, Golden Temple tour, or
@@ -881,11 +945,11 @@ export default function SehgalTravelsLandingPage() {
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <div className="text-center mb-16">
               <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
-                Popular Packages
+                Romantic Getaways
               </p>
 
               <h2 className="text-4xl md:text-5xl font-black">
-                Best Holiday Destinations
+                Romantic Tours in India & Abroad
               </h2>
             </div>
 
@@ -906,23 +970,23 @@ export default function SehgalTravelsLandingPage() {
                   </div>
 
                   <div className="p-6">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                       <h3 className="text-2xl font-bold">{item.title}</h3>
                       <span className="text-sm bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">
-                        {item.days}
+                        {item.category}
                       </span>
                     </div>
 
-                    <p className="text-gray-600 mb-6">
-                      Enjoy premium stays, sightseeing, and unforgettable
-                      moments.
+                    <p className="text-gray-600 mb-3">{item.description}</p>
+                    <p className="text-sm font-semibold text-gray-800 mb-6">
+                      {item.days}
                     </p>
 
                     <button
                       onClick={() => setShowContact(true)}
                       className="w-full bg-black text-white py-4 rounded-2xl hover:bg-orange-500 transition font-semibold"
                     >
-                      View Details
+                      Plan This Getaway
                     </button>
                   </div>
                 </div>
