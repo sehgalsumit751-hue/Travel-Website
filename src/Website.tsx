@@ -1,77 +1,106 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import sehgalLogo from './assets/sehgal-logo.png';
-import { FloatingCTA } from './components/FloatingCTA';
-import { InquiryForm } from './components/InquiryForm';
+import React, { useState } from "react";
+import "./home.css";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import sehgalLogo from "./assets/sehgal-logo.png";
+import { FloatingCTA } from "./components/FloatingCTA";
+import { InquiryForm } from "./components/InquiryForm";
+import { destinationBlogPosts } from "./pages/blogs/DestinationTravelBlogs";
 
 const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'TaxiService'],
-  name: 'Sehgal Travels',
-  description: 'Premium taxi and cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, Innova Crysta rentals, outstation cabs, and luxury travel services available 24/7.',
-  url: 'https://sehgaltravels.com',
-  telephone: ['+919779150658', '+917814635511'],
-  email: 'info@sehgaltravels.com',
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "TaxiService"],
+  name: "Sehgal Travels",
+  description:
+    "Premium taxi and cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, Innova Crysta rentals, outstation cabs, and luxury travel services available 24/7.",
+  url: "https://sehgaltravels.com",
+  telephone: ["+919779150658", "+917814635511"],
+  email: "info@sehgaltravels.com",
   address: {
-    '@type': 'PostalAddress',
-    streetAddress: '1120, Hussainpura',
-    addressLocality: 'Amritsar',
-    addressRegion: 'Punjab',
-    postalCode: '143001',
-    addressCountry: 'IN',
+    "@type": "PostalAddress",
+    streetAddress: "1120, Hussainpura",
+    addressLocality: "Amritsar",
+    addressRegion: "Punjab",
+    postalCode: "143001",
+    addressCountry: "IN",
   },
-  geo: { '@type': 'GeoCoordinates', latitude: '31.6340', longitude: '74.8723' },
+  geo: { "@type": "GeoCoordinates", latitude: "31.6340", longitude: "74.8723" },
   openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    opens: '00:00',
-    closes: '23:59',
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "00:00",
+    closes: "23:59",
   },
-  priceRange: '₹₹',
-  currenciesAccepted: 'INR',
-  paymentAccepted: 'Cash, UPI, Credit Card',
+  priceRange: "₹₹",
+  currenciesAccepted: "INR",
+  paymentAccepted: "Cash, UPI, Credit Card",
   areaServed: [
-    { '@type': 'City', name: 'Amritsar' },
-    { '@type': 'AdministrativeArea', name: 'Punjab' },
-    { '@type': 'City', name: 'Chandigarh' },
-    { '@type': 'City', name: 'Jalandhar' },
+    { "@type": "City", name: "Amritsar" },
+    { "@type": "AdministrativeArea", name: "Punjab" },
+    { "@type": "City", name: "Chandigarh" },
+    { "@type": "City", name: "Jalandhar" },
   ],
 };
 
 const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
   mainEntity: [
     {
-      '@type': 'Question',
-      name: 'What taxi services does Sehgal Travels offer in Amritsar?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Sehgal Travels offers airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.' },
+      "@type": "Question",
+      name: "What taxi services does Sehgal Travels offer in Amritsar?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sehgal Travels offers airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.",
+      },
     },
     {
-      '@type': 'Question',
-      name: 'How do I book a cab in Amritsar with Sehgal Travels?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Call us directly at +91 9779150658 or +91 7814635511. Our team is available 24/7 to assist with bookings for local, outstation, and airport taxi services across Amritsar and Punjab.' },
+      "@type": "Question",
+      name: "How do I book a cab in Amritsar with Sehgal Travels?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Call us directly at +91 9779150658 or +91 7814635511. Our team is available 24/7 to assist with bookings for local, outstation, and airport taxi services across Amritsar and Punjab.",
+      },
     },
     {
-      '@type': 'Question',
-      name: 'What is the taxi fare from Amritsar to Chandigarh?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The fare from Amritsar to Chandigarh ranges from ₹2,500 to ₹4,500 depending on the vehicle. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Contact us at +91 9779150658 for exact pricing.' },
+      "@type": "Question",
+      name: "What is the taxi fare from Amritsar to Chandigarh?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The fare from Amritsar to Chandigarh ranges from ₹2,500 to ₹4,500 depending on the vehicle. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Contact us at +91 9779150658 for exact pricing.",
+      },
     },
     {
-      '@type': 'Question',
-      name: 'Do you provide airport taxi service at Sri Guru Ram Dass Jee Airport, Amritsar?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes, we provide 24/7 airport pickup and drop at Amritsar International Airport (ATQ). Our drivers monitor flight arrivals and ensure on-time pickup for all passengers.' },
+      "@type": "Question",
+      name: "Do you provide airport taxi service at Sri Guru Ram Dass Jee Airport, Amritsar?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, we provide 24/7 airport pickup and drop at Amritsar International Airport (ATQ). Our drivers monitor flight arrivals and ensure on-time pickup for all passengers.",
+      },
     },
     {
-      '@type': 'Question',
-      name: 'Which vehicles are available for rent in Punjab with Sehgal Travels?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Our fleet includes Maruti Suzuki Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo travelers, families, and corporate groups.' },
+      "@type": "Question",
+      name: "Which vehicles are available for rent in Punjab with Sehgal Travels?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our fleet includes Maruti Suzuki Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo travelers, families, and corporate groups.",
+      },
     },
     {
-      '@type': 'Question',
-      name: 'Do you offer one-way taxi service from Amritsar to other cities?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes, we offer one-way and round-trip cab services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other major destinations across North India.' },
+      "@type": "Question",
+      name: "Do you offer one-way taxi service from Amritsar to other cities?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, we offer one-way and round-trip cab services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other major destinations across North India.",
+      },
     },
   ],
 };
@@ -79,872 +108,1305 @@ const faqSchema = {
 export default function SehgalTravelsLandingPage() {
   const [showContact, setShowContact] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const faqs = [
-    { q: 'What taxi services does Sehgal Travels offer in Amritsar?', a: 'We offer airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.' },
-    { q: 'How do I book a cab in Amritsar with Sehgal Travels?', a: 'Simply call us at +91 9779150658 or +91 7814635511. Our team is available 24/7 for local, outstation, and airport taxi bookings.' },
-    { q: 'What is the taxi fare from Amritsar to Chandigarh?', a: 'Fares range from ₹2,500 to ₹4,500 depending on vehicle type. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Call us for exact pricing.' },
-    { q: 'Do you provide airport pickup and drop at Amritsar Airport?', a: 'Yes! We offer 24/7 airport pickup and drop at Sri Guru Ram Dass Jee International Airport (ATQ), Amritsar. Our drivers track flight arrivals for on-time service.' },
-    { q: 'Which vehicles are available for hire in Punjab?', a: 'Our fleet includes Maruti Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo trips, family tours, and corporate travel.' },
-    { q: 'Do you offer one-way cabs from Amritsar to other cities?', a: 'Yes! We provide one-way and round-trip taxi services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other North India destinations.' },
+    {
+      q: "What taxi services does Sehgal Travels offer in Amritsar?",
+      a: "We offer airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.",
+    },
+    {
+      q: "How do I book a cab in Amritsar with Sehgal Travels?",
+      a: "Simply call us at +91 9779150658 or +91 7814635511. Our team is available 24/7 for local, outstation, and airport taxi bookings.",
+    },
+    {
+      q: "What is the taxi fare from Amritsar to Chandigarh?",
+      a: "Fares range from ₹2,500 to ₹4,500 depending on vehicle type. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Call us for exact pricing.",
+    },
+    {
+      q: "Do you provide airport pickup and drop at Amritsar Airport?",
+      a: "Yes! We offer 24/7 airport pickup and drop at Sri Guru Ram Dass Jee International Airport (ATQ), Amritsar. Our drivers track flight arrivals for on-time service.",
+    },
+    {
+      q: "Which vehicles are available for hire in Punjab?",
+      a: "Our fleet includes Maruti Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo trips, family tours, and corporate travel.",
+    },
+    {
+      q: "Do you offer one-way cabs from Amritsar to other cities?",
+      a: "Yes! We provide one-way and round-trip taxi services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other North India destinations.",
+    },
   ];
 
   const blogPosts = [
-    { title: 'Best Taxi Service in Amritsar: Complete 2025 Guide', category: 'Travel Guide', excerpt: 'Everything you need to know about booking a reliable cab in Amritsar — routes, fares, and tips.', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=600&auto=format&fit=crop', href: '/blog/taxi-service-amritsar-guide' },
-    { title: 'Amritsar to Chandigarh Taxi: Fare, Route & Tips', category: 'Routes', excerpt: "Planning a cab from Amritsar to Chandigarh? Complete guide on fares, stops, and booking.", image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=600&auto=format&fit=crop', href: '/blog/amritsar-to-chandigarh-taxi' },
-    { title: "Golden Temple Tour by Cab: Visitor's Complete Guide", category: 'Sightseeing', excerpt: 'How to plan your Golden Temple visit with a private cab — timings, routes, and nearby attractions.', image: 'https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=600&auto=format&fit=crop', href: '/blog/golden-temple-tour-guide' },
-    { title: 'Innova Crysta on Rent in Punjab: Is It Worth It?', category: 'Vehicle Guide', excerpt: 'Why Innova Crysta is the top choice for family trips and outstation travel across Punjab.', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=600&auto=format&fit=crop', href: '/blog/innova-crysta-rent-punjab' },
+    {
+      title: "Best Taxi Service in Amritsar: Complete 2025 Guide",
+      category: "Travel Guide",
+      excerpt:
+        "Everything you need to know about booking a reliable cab in Amritsar — routes, fares, and tips.",
+      image:
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=600&auto=format&fit=crop",
+      href: "/blog/taxi-service-amritsar-guide",
+    },
+    {
+      title: "Amritsar to Chandigarh Taxi: Fare, Route & Tips",
+      category: "Routes",
+      excerpt:
+        "Planning a cab from Amritsar to Chandigarh? Complete guide on fares, stops, and booking.",
+      image:
+        "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=600&auto=format&fit=crop",
+      href: "/blog/amritsar-to-chandigarh-taxi",
+    },
+    {
+      title: "Golden Temple Tour by Cab: Visitor's Complete Guide",
+      category: "Sightseeing",
+      excerpt:
+        "How to plan your Golden Temple visit with a private cab — timings, routes, and nearby attractions.",
+      image:
+        "https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=600&auto=format&fit=crop",
+      href: "/blog/golden-temple-tour-guide",
+    },
+    {
+      title: "Innova Crysta on Rent in Punjab: Is It Worth It?",
+      category: "Vehicle Guide",
+      excerpt:
+        "Why Innova Crysta is the top choice for family trips and outstation travel across Punjab.",
+      image:
+        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=600&auto=format&fit=crop",
+      href: "/blog/innova-crysta-rent-punjab",
+    },
+      ...destinationBlogPosts
+        .filter((post) =>
+          [
+            "romantic-himachal-honeymoon-itinerary",
+            "romantic-getaways-in-himachal-for-couples",
+            "international-trip-planning-checklist-2026",
+            "how-to-find-flight-tickets-2026",
+          ].includes(post.slug),
+        )
+        .map((post) => ({
+      title: post.title,
+      category: post.category,
+      excerpt: post.excerpt,
+      image: post.image,
+      href: `/blog/${post.slug}`,
+        })),
   ];
 
   const packages = [
     {
-      title: 'Himachal Tour',
-      days: '5 Days / 4 Nights',
+      title: "Himachal Tour",
+      days: "5 Days / 4 Nights",
       image:
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop',
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop",
     },
     {
-      title: 'Kashmir Paradise',
-      days: '6 Days / 5 Nights',
+      title: "Kashmir Paradise",
+      days: "6 Days / 5 Nights",
       image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600&auto=format&fit=crop',
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600&auto=format&fit=crop",
     },
     {
-      title: 'Goa Vacation',
-      days: '4 Days / 3 Nights',
+      title: "Goa Vacation",
+      days: "4 Days / 3 Nights",
       image:
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop',
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
     },
   ];
 
-  const services = [ 
-    'Airport Transfers',
-    'Golden Temple Tours',
-    'Luxury Travel Packages',
-    'Outstation Trips',
-    'Corporate Travel',
-    '24/7 Pickup & Drop',
+  const services = [
+    "Airport Transfers",
+    "Golden Temple Tours",
+    "Luxury Travel Packages",
+    "Outstation Trips",
+    "Corporate Travel",
+    "24/7 Pickup & Drop",
   ];
 
   const fleet = [
     {
-      name: 'Maruti Suzuki Dzire',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG/960px-Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG',
+      name: "Maruti Suzuki Dzire",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG/960px-Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG",
     },
     {
-      name: 'Toyota Etios',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Toyota_Etios_top_left_front.jpg',
+      name: "Toyota Etios",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/e/eb/Toyota_Etios_top_left_front.jpg",
     },
     {
-      name: 'Toyota Innova',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/7/70/2016_Toyota_Innova_2.8_G.jpg',
+      name: "Toyota Innova",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/7/70/2016_Toyota_Innova_2.8_G.jpg",
     },
     {
-      name: 'Innova Crysta',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Toyota_Innova_Crysta_2.4_Z_side.jpg',
+      name: "Innova Crysta",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/8/87/Toyota_Innova_Crysta_2.4_Z_side.jpg",
     },
     {
-      name: 'Toyota Hycross',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/2023_Toyota_Innova_Zenix_2.0_HEV_Premium.jpg',
+      name: "Toyota Hycross",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/e/e0/2023_Toyota_Innova_Zenix_2.0_HEV_Premium.jpg",
     },
     {
-      name: 'XL6',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Maruti_Suzuki_XL6_%28front%29.jpg',
+      name: "XL6",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/4/45/Maruti_Suzuki_XL6_%28front%29.jpg",
     },
     {
-      name: 'Kia Carens',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Kia_Carens_%28front_quarter_grey%29.JPG',
+      name: "Kia Carens",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/d/d9/Kia_Carens_%28front_quarter_grey%29.JPG",
     },
     {
-      name: 'Tempo Traveller',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/IMG-20190215-WA0015.jpg/960px-IMG-20190215-WA0015.jpg',
+      name: "Tempo Traveller",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/IMG-20190215-WA0015.jpg/960px-IMG-20190215-WA0015.jpg",
     },
     {
-      name: 'Force Urbania',
-      image: 'https://stimg.cardekho.com/images/carexteriorimages/630x420/Force/Urbania/11849/1763466348855/front-left-side-47.jpg?tr=w-664',
+      name: "Force Urbania",
+      image:
+        "https://stimg.cardekho.com/images/carexteriorimages/630x420/Force/Urbania/11849/1763466348855/front-left-side-47.jpg?tr=w-664",
     },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Best Taxi Service in Amritsar Punjab | Cab Booking | Sehgal Travels</title>
-        <meta name="description" content="Book reliable taxi in Amritsar with Sehgal Travels. Airport transfers, Golden Temple tours, Innova Crysta rental, Chandigarh to Amritsar cab, outstation trips & Punjab tour packages. Call +91 9779150658. Available 24/7." />
-        <meta name="keywords" content="taxi service Amritsar, cab booking Amritsar, airport taxi Amritsar, Innova Crysta on rent Punjab, Golden Temple taxi, Chandigarh to Amritsar cab, outstation cab Punjab, Punjab tour packages, Sehgal Travels, best cab Amritsar, luxury taxi Punjab, Amritsar to Delhi taxi, Amritsar to Chandigarh taxi, one way cab Punjab, taxi near golden temple, cab booking near me Amritsar, airport pickup Amritsar, tempo traveller Punjab, Amritsar to Manali taxi, Amritsar to Dharamshala cab, Amritsar to Katra taxi, wedding car rental Amritsar, corporate cab service Punjab" />
+        <title>
+          Best Taxi Service in Amritsar Punjab | Cab Booking | Sehgal Travels
+        </title>
+        <meta
+          name="description"
+          content="Book reliable taxi in Amritsar with Sehgal Travels. Airport transfers, Golden Temple tours, Innova Crysta rental, Chandigarh to Amritsar cab, outstation trips & Punjab tour packages. Call +91 9779150658. Available 24/7."
+        />
+        <meta
+          name="keywords"
+          content="taxi service Amritsar, cab booking Amritsar, airport taxi Amritsar, Innova Crysta on rent Punjab, Golden Temple taxi, Chandigarh to Amritsar cab, outstation cab Punjab, Punjab tour packages, Sehgal Travels, best cab Amritsar, luxury taxi Punjab, Amritsar to Delhi taxi, Amritsar to Chandigarh taxi, one way cab Punjab, taxi near golden temple, cab booking near me Amritsar, airport pickup Amritsar, tempo traveller Punjab, Amritsar to Manali taxi, Amritsar to Dharamshala cab, Amritsar to Katra taxi, wedding car rental Amritsar, corporate cab service Punjab"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Sehgal Travels" />
         <link rel="canonical" href="https://sehgaltravels.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Best Taxi Service in Amritsar Punjab | Sehgal Travels" />
-        <meta property="og:description" content="Premium taxi & cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, outstation trips & Innova Crysta rentals. 24/7 service. Call +91 9779150658." />
+        <meta
+          property="og:title"
+          content="Best Taxi Service in Amritsar Punjab | Sehgal Travels"
+        />
+        <meta
+          property="og:description"
+          content="Premium taxi & cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, outstation trips & Innova Crysta rentals. 24/7 service. Call +91 9779150658."
+        />
         <meta property="og:url" content="https://sehgaltravels.com/" />
         <meta property="og:site_name" content="Sehgal Travels" />
         <meta property="og:locale" content="en_IN" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Best Taxi Service in Amritsar Punjab | Sehgal Travels" />
-        <meta name="twitter:description" content="Premium taxi & cab services in Amritsar. Airport transfers, Golden Temple tours, outstation trips. Available 24/7." />
-        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+        <meta
+          name="twitter:title"
+          content="Best Taxi Service in Amritsar Punjab | Sehgal Travels"
+        />
+        <meta
+          name="twitter:description"
+          content="Premium taxi & cab services in Amritsar. Airport transfers, Golden Temple tours, outstation trips. Available 24/7."
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
+        </script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
-  
-      <div className="bg-white text-gray-900 min-h-screen font-sans">
-      {/* Navbar */}
-      <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src={sehgalLogo}
-              alt="Sehgal Travels Logo"
-              width={56}
-              height={56}
-              fetchPriority="high"
-              decoding="async"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-orange-400 shadow-md flex-shrink-0"
-            />
-            <div className="leading-tight">
-              <span className="block text-lg md:text-2xl font-extrabold tracking-tight text-gray-900">
-                Sehgal Travels
-              </span>
-              <span className="block text-[11px] md:text-xs text-orange-500 font-medium tracking-widest uppercase">
-                Premium Travel & Cab Services
-              </span>
+
+      <div className="landing-shell bg-white text-gray-900 min-h-screen font-sans">
+        {/* Navbar */}
+        <header className="landing-header fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img
+                src={sehgalLogo}
+                alt="Sehgal Travels Logo"
+                width={56}
+                height={56}
+                fetchPriority="high"
+                decoding="async"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-orange-400 shadow-md flex-shrink-0"
+              />
+              <div className="min-w-0 leading-tight">
+                <span className="block text-lg md:text-2xl font-extrabold tracking-tight text-gray-900">
+                  Sehgal Travels
+                </span>
+                <span className="block text-[9px] md:text-[10px] text-orange-500 font-semibold tracking-[0.1em] uppercase">
+                  Cabs · Tours · Airport Transfers
+                </span>
+              </div>
             </div>
-          </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#home" className="hover:text-orange-500 transition">
-              Home
-            </a>
-            <a href="#services" className="hover:text-orange-500 transition">
-              Services
-            </a>
-            <a href="#packages" className="hover:text-orange-500 transition">
-              Packages
-            </a>
-            <Link to="/tourist-visa" className="hover:text-orange-500 transition">
-              Visa Services
-            </Link>
-            <a href="#about" className="hover:text-orange-500 transition">
-              About
-            </a>
-            <Link to="/blog" className="hover:text-orange-500 transition">
-              Blog
-            </Link>
-            <Link to="/contact" className="hover:text-orange-500 transition">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=1800&auto=format&fit=crop"
-          alt="Golden Temple Amritsar"
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black/50"></div>
-
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto text-white">
-          <p className="uppercase tracking-[5px] text-orange-300 text-sm mb-4">
-            Trusted Travel Partner
-          </p>
-
-          <h1 className="text-4xl md:text-7xl font-black leading-tight mb-6">
-            Best Taxi Service in
-            <span className="text-orange-400"> Amritsar & Punjab</span>
-          </h1>
-
-          <p className="text-base md:text-xl text-gray-200 mb-8 leading-relaxed">
-            Premium cab services, Golden Temple tours, airport transfers, outstation rides, and luxury travel experiences crafted with comfort and trust by Sehgal Travels.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#packages" className="bg-orange-500 hover:bg-orange-600 transition px-8 py-4 rounded-full font-semibold text-lg shadow-lg">
-              Explore Packages
-            </a>
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+              <a href="#home" className="hover:text-orange-500 transition">
+                Home
+              </a>
+              <a href="#services" className="hover:text-orange-500 transition">
+                Services
+              </a>
+              <a href="#packages" className="hover:text-orange-500 transition">
+                Packages
+              </a>
+              <Link
+                to="/tourist-visa"
+                className="hover:text-orange-500 transition"
+              >
+                Visa Services
+              </Link>
+              <a href="#about" className="hover:text-orange-500 transition">
+                About
+              </a>
+              <Link to="/blog" className="hover:text-orange-500 transition">
+                Blog
+              </Link>
+              <Link to="/contact" className="hover:text-orange-500 transition">
+                Contact
+              </Link>
+              <a href="tel:+917814635511" className="landing-header-call">
+                Call Now
+              </a>
+            </nav>
 
             <button
-              onClick={() => setShowContact(true)}
-              className="border border-white hover:bg-white hover:text-black transition px-8 py-4 rounded-full font-semibold text-lg"
+              type="button"
+              className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              Contact Us
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
-        </div>
-      </section>
-
-      {/* Inquiry Form Section */}
-      <section className="relative -mt-16 md:-mt-24 z-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="bg-white rounded-[30px] shadow-2xl p-6 md:p-10 border border-gray-100 flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Book Your Cab Instantly</h2>
-            <p className="text-gray-600 text-lg">Get a quick quote for local, outstation, or airport transfers. Fast, reliable, and premium service.</p>
-          </div>
-          <div className="flex-1 w-full">
-            <InquiryForm />
-          </div>
-        </div>
-      </section>
-
-      {/* Branding / Trust Stats */}
-      <section className="py-14 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-10">
-            <p className="text-orange-400 uppercase tracking-[4px] font-semibold text-sm mb-2">Why Sehgal Travels</p>
-            <h2 className="text-3xl md:text-4xl font-black">Amritsar&apos;s Most Trusted Travel Brand</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '10+', label: 'Years of Experience' },
-              { value: '5000+', label: 'Happy Customers' },
-              { value: '50+', label: 'Premium Vehicles' },
-              { value: '24/7', label: 'Available Always' },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <span className="text-5xl font-black text-orange-400 mb-2">{stat.value}</span>
-                <span className="text-gray-300 font-medium text-sm uppercase tracking-wide">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            {['Airport Transfers', 'Golden Temple Tours', 'Tourist Visa Services', 'Outstation Cabs', 'Wedding Cars', 'Corporate Travel'].map((tag, i) => (
-              <span key={i} className="bg-white/10 border border-orange-400/30 text-white px-4 py-2 rounded-full text-sm font-medium">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              title: 'Customized Trips',
-              desc: 'Personalized holiday plans based on your travel style and budget.',
-            },
-            {
-              title: 'Affordable Pricing',
-              desc: 'Premium travel experiences at highly competitive prices.',
-            },
-            {
-              title: '24/7 Support',
-              desc: 'Dedicated travel assistance whenever you need help.',
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl transition duration-300 text-center"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-2xl mx-auto">
-                ✈️
-              </div>
-              <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+          <nav
+            id="mobile-navigation"
+            className={`md:hidden border-t border-gray-200 bg-white px-4 py-3 shadow-lg ${mobileMenuOpen ? "block" : "hidden"}`}
+          >
+            <div className="mx-auto flex max-w-7xl flex-col text-sm font-medium">
+              <a href="#home" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Home</a>
+              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Services</a>
+              <a href="#packages" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Packages</a>
+              <Link to="/tourist-visa" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Visa Services</Link>
+              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">About</a>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Blog</Link>
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Contact</Link>
             </div>
-          ))}
-        </div>
-      </section>
+          </nav>
+        </header>
 
-      {/* About */}
-      <section id="about" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=800&auto=format&fit=crop"
-              alt="Golden Temple Amritsar"
-              loading="lazy"
-              decoding="async"
-              className="rounded-[40px] shadow-2xl w-full h-[500px] object-cover"
-            />
+        {/* Hero Section */}
+        <section id="home" className="landing-hero relative flex items-center overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1561304381-70c65d96a3de?q=80&w=1800&auto=format&fit=crop"
+            alt="Golden Temple Amritsar"
+            fetchPriority="high"
+            decoding="async"
+            className="landing-hero-image absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="landing-hero-shade absolute inset-0" />
+          <div className="landing-hero-content relative z-10 w-full max-w-7xl mx-auto px-5 md:px-8 text-white">
+            <div className="landing-hero-copy">
+              <p className="landing-eyebrow">SEHGAL TRAVELS · AMRITSAR</p>
+              <h1 className="landing-hero-title">
+                Cabs, Tours & Airport Transfers <span>in Amritsar & Punjab</span>
+              </h1>
+              <p className="landing-hero-description">
+                Book a local cab, airport pickup, Golden Temple tour, or
+                comfortable outstation journey with a dependable local driver.
+              </p>
+              <div className="landing-hero-actions">
+                <a href="#booking" className="landing-button landing-button-primary">
+                  Book a Taxi
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a href="#packages" className="landing-button landing-button-quiet">
+                  Tour Packages
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setShowContact(true)}
+                  className="landing-button landing-button-quiet"
+                >
+                  Contact Us
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+              <div className="landing-hero-proof">
+                <span>Local cabs and 24/7 airport pickups</span>
+                <span>Golden Temple and Punjab tour packages</span>
+                <span>Experienced local drivers</span>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div>
-            <p className="text-orange-500 font-semibold uppercase tracking-[4px] mb-4">
-              About Us
-            </p>
+        {/* Inquiry Form Section */}
+        <section id="booking" className="landing-booking relative z-20 px-4 md:px-8 max-w-7xl mx-auto">
+          <div className="landing-booking-card bg-white border border-gray-200 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            <div className="landing-booking-copy flex-1 text-center md:text-left">
+              <p className="landing-booking-kicker">PLAN YOUR RIDE</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                Your Amritsar journey, sorted.
+              </h2>
+              <p className="text-gray-600">
+                Tell us where you’re going. We’ll help with local, airport, and
+                outstation cab bookings.
+              </p>
+            </div>
+            <div className="flex-1 w-full">
+              <InquiryForm />
+            </div>
+          </div>
+        </section>
 
-            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-              Experience Amritsar With Premium Travel Services
-            </h2>
+        {/* Branding / Trust Stats */}
+        <section className="py-14 bg-black text-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-10">
+              <p className="text-orange-400 uppercase tracking-[4px] font-semibold text-sm mb-2">
+                Why Sehgal Travels
+              </p>
+              <h2 className="text-3xl md:text-4xl font-black">
+                Amritsar&apos;s Most Trusted Travel Brand
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: "10+", label: "Years of Experience" },
+                { value: "5000+", label: "Happy Customers" },
+                { value: "50+", label: "Premium Vehicles" },
+                { value: "24/7", label: "Available Always" },
+              ].map((stat, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <span className="text-5xl font-black text-orange-400 mb-2">
+                    {stat.value}
+                  </span>
+                  <span className="text-gray-300 font-medium text-sm uppercase tracking-wide">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              {[
+                "Airport Transfers",
+                "Golden Temple Tours",
+                "Tourist Visa Services",
+                "Outstation Cabs",
+                "Wedding Cars",
+                "Corporate Travel",
+              ].map((tag, i) => (
+                <span
+                  key={i}
+                  className="bg-white/10 border border-orange-400/30 text-white px-4 py-2 rounded-full text-sm font-medium"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Sehgal Travels offers premium transportation and travel services across Amritsar and Punjab. From Golden Temple visits to airport pickups and luxury outstation rides, we provide professional drivers, comfortable vehicles, and unforgettable travel experiences.
-            </p>
+        {/* Features */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Customized Trips",
+                desc: "Personalized holiday plans based on your travel style and budget.",
+              },
+              {
+                title: "Affordable Pricing",
+                desc: "Premium travel experiences at highly competitive prices.",
+              },
+              {
+                title: "24/7 Support",
+                desc: "Dedicated travel assistance whenever you need help.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-3xl p-8 shadow-md hover:shadow-2xl transition duration-300 text-center"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 text-2xl mx-auto">
+                  ✈️
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {services.map((service, index) => (
+        {/* About */}
+        <section id="about" className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=800&auto=format&fit=crop"
+                alt="Golden Temple Amritsar"
+                loading="lazy"
+                decoding="async"
+                className="rounded-[40px] shadow-2xl w-full h-[500px] object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-orange-500 font-semibold uppercase tracking-[4px] mb-4">
+                About Us
+              </p>
+
+              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                Experience Amritsar With Premium Travel Services
+              </h2>
+
+              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                Sehgal Travels offers premium transportation and travel services
+                across Amritsar and Punjab. From Golden Temple visits to airport
+                pickups and luxury outstation rides, we provide professional
+                drivers, comfortable vehicles, and unforgettable travel
+                experiences.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {services.map((service, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-100 rounded-2xl px-5 py-4 font-medium hover:bg-orange-100 transition"
+                  >
+                    ✓ {service}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* SEO Content Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-14">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
+                Best Taxi Service In Punjab
+              </p>
+
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Affordable Cab Booking & Luxury Taxi Services
+              </h2>
+
+              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                Sehgal Travels is one of the leading taxi service providers in
+                Amritsar Punjab offering airport taxi booking, Innova Crysta
+                rentals, Golden Temple taxi service, outstation cab booking,
+                Punjab tour packages, Chandigarh to Amritsar cab service, and
+                luxury transportation services with professional drivers and
+                affordable pricing.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-3xl p-8 shadow-md">
+                <h3 className="text-2xl font-bold mb-5">
+                  Popular Taxi Services
+                </h3>
+
+                <ul className="space-y-3 text-gray-700 leading-relaxed">
+                  <li>✓ Taxi Service In Amritsar</li>
+                  <li>✓ Cab Booking Amritsar</li>
+                  <li>✓ Airport Taxi Amritsar</li>
+                  <li>✓ Innova Crysta On Rent Punjab</li>
+                  <li>✓ Chandigarh To Amritsar Cab</li>
+                  <li>✓ Golden Temple Taxi Service</li>
+                  <li>✓ Outstation Cab Punjab</li>
+                  <li>✓ Amritsar To Jalandhar Taxi</li>
+                  <li>✓ Amritsar To Ludhiana Cab</li>
+                  <li>✓ Amritsar To Chandigarh Airport Taxi</li>
+                  <li>✓ Amritsar To Delhi Airport Cab</li>
+                  <li>✓ Amritsar To Jammu Airport Taxi</li>
+                  <li>✓ Amritsar To Jaipur Cab</li>
+                  <li>✓ Amritsar To Haridwar Taxi</li>
+                  <li>✓ Amritsar To Rishikesh Cab</li>
+                  <li>✓ Amritsar To Agra Taxi</li>
+                  <li>✓ Amritsar To Dehradun Cab</li>
+                  <li>✓ Amritsar To Noida Taxi</li>
+                  <li>✓ Amritsar To Gurugram Cab</li>
+                  <li>✓ Amritsar Airport Taxi Booking</li>
+                  <li>✓ Amritsar Airport To Golden Temple Taxi</li>
+                  <li>✓ Amritsar Airport To Railway Station Cab</li>
+                  <li>✓ Amritsar Airport To Chandigarh Taxi</li>
+                  <li>✓ Amritsar Airport To Dalhousie Cab</li>
+                  <li>✓ One Way Taxi Punjab</li>
+                  <li>✓ Round Trip Cab Service</li>
+                  <li>✓ Luxury Taxi Service Punjab</li>
+                  <li>✓ Wedding Car Rental Amritsar</li>
+                  <li>✓ 24/7 Taxi Service Amritsar</li>
+                  <li>✓ Family Tour Taxi Punjab</li>
+                  <li>✓ Corporate Cab Service</li>
+                  <li>✓ Punjab Sightseeing Taxi</li>
+                  <li>✓ Local Cab Service Amritsar</li>
+                  <li>✓ Cheap Taxi Service Punjab</li>
+                  <li>✓ Best Travel Agency Amritsar</li>
+                  <li>✓ Tempo Traveller Booking Punjab</li>
+                  <li>✓ Taxi Service Batala</li>
+                  <li>✓ Cab Service Gurdaspur</li>
+                  <li>✓ Taxi Booking Pathankot</li>
+                  <li>✓ Taxi Service Tarn Taran</li>
+                  <li>✓ Cab Service Jalandhar</li>
+                  <li>✓ Taxi Booking Ludhiana</li>
+                  <li>✓ Cab Service Hoshiarpur</li>
+                  <li>✓ Amritsar To Patiala Taxi</li>
+                  <li>✓ Amritsar To Mohali Cab</li>
+                  <li>✓ Amritsar To Panchkula Taxi</li>
+                  <li>✓ Amritsar To Ambala Cab</li>
+                  <li>✓ Amritsar To Shimla Taxi</li>
+                  <li>✓ Amritsar To Kufri Cab</li>
+                  <li>✓ Amritsar To Kullu Taxi</li>
+                  <li>✓ Amritsar To Kasol Cab</li>
+                  <li>✓ Amritsar To McLeod Ganj Taxi</li>
+                  <li>✓ Amritsar To Bir Billing Cab</li>
+                  <li>✓ Amritsar To Palampur Taxi</li>
+                  <li>✓ Amritsar To Chamba Cab</li>
+                  <li>✓ Amritsar To Khajjiar Taxi</li>
+                  <li>✓ Amritsar To Pathankot Cab</li>
+                  <li>✓ Amritsar To Jammu Taxi</li>
+                  <li>✓ Amritsar To Srinagar Cab</li>
+                  <li>✓ Amritsar To Pahalgam Taxi</li>
+                  <li>✓ Amritsar To Sonamarg Cab</li>
+                  <li>✓ Taxi Service Kapurthala</li>
+                  <li>✓ Taxi Service Chandigarh</li>
+                  <li>✓ Cab Booking Mohali</li>
+                  <li>✓ Taxi Service Katra</li>
+                  <li>✓ Taxi Booking Dharamshala</li>
+                  <li>✓ Taxi Service Dalhousie</li>
+                  <li>✓ Taxi For Golden Temple Visit</li>
+                  <li>✓ Ertiga Taxi Service Amritsar</li>
+                  <li>✓ Corporate Taxi Service Amritsar</li>
+                  <li>✓ Amritsar Airport To Dharamshala Taxi</li>
+                  <li>✓ Amritsar Airport To Manali Cab</li>
+                  <li>✓ Amritsar Airport To Jammu Taxi</li>
+                  <li>✓ Amritsar Airport To Katra Cab</li>
+                  <li>✓ Amritsar Airport To Pathankot Taxi</li>
+                  <li>✓ Airport Transfer Service Amritsar</li>
+                  <li>✓ Private Airport Pickup Amritsar</li>
+                  <li>✓ Amritsar Airport Car Rental</li>
+                  <li>✓ One Way Taxi From Amritsar</li>
+                  <li>✓ Round Trip Taxi From Amritsar</li>
+                  <li>✓ Amritsar Outstation Cab Booking</li>
+                  <li>✓ 24 Hour Taxi Service Amritsar</li>
+                  <li>✓ Local Taxi Booking Amritsar</li>
+                  <li>✓ Full Day Cab Rental Amritsar</li>
+                  <li>✓ Amritsar Sightseeing Taxi</li>
+                  <li>✓ Amritsar Railway Station Pickup Taxi</li>
+                  <li>✓ Amritsar Railway Station Drop Cab</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-3xl p-8 shadow-md">
+                <h3 className="text-2xl font-bold mb-5">
+                  Punjab & North India Routes
+                </h3>
+
+                <ul className="space-y-3 text-gray-700 leading-relaxed">
+                  <li>✓ Amritsar To Chandigarh Taxi</li>
+                  <li>✓ Amritsar To Delhi Cab</li>
+                  <li>✓ Amritsar To Katra Taxi</li>
+                  <li>✓ Amritsar To Dharamshala Cab</li>
+                  <li>✓ Amritsar To Dalhousie Taxi</li>
+                  <li>✓ Amritsar To Manali Cab</li>
+                  <li>✓ Punjab Himachal Tour Packages</li>
+                  <li>✓ Kashmir Tour Taxi Service</li>
+                  <li>✓ Vaishno Devi Taxi Booking</li>
+                  <li>✓ Airport Pickup Amritsar</li>
+                  <li>✓ Airport Drop Taxi Punjab</li>
+                  <li>✓ Cab Booking Near Golden Temple</li>
+                  <li>✓ Taxi Service Near Amritsar Airport</li>
+                  <li>✓ Innova Taxi Booking Punjab</li>
+                  <li>✓ SUV Cab Rental Punjab</li>
+                  <li>✓ Luxury Car Rental Amritsar</li>
+                  <li>✓ Cab Service In Punjab</li>
+                  <li>✓ Online Taxi Booking Amritsar</li>
+                  <li>✓ North India Tour Packages</li>
+                  <li>✓ Punjab Holiday Packages</li>
+                  <li>✓ Best Taxi Service In Amritsar</li>
+                  <li>✓ Affordable Cab Service Amritsar</li>
+                  <li>✓ Amritsar Outstation Taxi Service</li>
+                  <li>✓ Innova Crysta Rental Amritsar</li>
+                  <li>✓ Late Night Airport Cab Amritsar</li>
+                  <li>✓ Family Taxi Service Amritsar</li>
+                  <li>✓ Private Cab Booking Amritsar</li>
+                  <li>✓ Budget Taxi Service Amritsar</li>
+                  <li>✓ Tempo Traveller Booking Amritsar</li>
+                  <li>✓ 7 Seater Taxi Booking Amritsar</li>
+                  <li>✓ Early Morning Airport Taxi Amritsar</li>
+                  <li>✓ Amritsar Airport To Hotel Transfer</li>
+                  <li>✓ Chandigarh Airport To Amritsar Cab</li>
+                  <li>✓ Delhi Airport To Amritsar Taxi</li>
+                  <li>✓ Jammu Airport To Katra Taxi</li>
+                  <li>✓ Private Airport Transfer Punjab</li>
+                  <li>✓ Amritsar Local Sightseeing Tour</li>
+                  <li>✓ Golden Temple Taxi Tour</li>
+                  <li>✓ Wagah Border Taxi Service</li>
+                  <li>✓ Amritsar Golden Temple Tour Package</li>
+                  <li>✓ Amritsar Wagah Border Tour Package</li>
+                  <li>✓ Amritsar One Day Tour Package</li>
+                  <li>✓ Amritsar Weekend Tour Packages</li>
+                  <li>✓ Amritsar To Himachal Tour Package</li>
+                  <li>✓ Amritsar To Kashmir Tour Package</li>
+                  <li>✓ Amritsar To Vaishno Devi Tour Package</li>
+                  <li>✓ Amritsar To Manali Holiday Package</li>
+                  <li>✓ Amritsar To Shimla Holiday Package</li>
+                  <li>✓ Amritsar To Dalhousie Holiday Package</li>
+                  <li>✓ Amritsar To Dharamshala Holiday Package</li>
+                  <li>✓ Amritsar To Srinagar Holiday Package</li>
+                  <li>✓ Punjab Family Tour Packages</li>
+                  <li>✓ Himachal Family Tour Packages</li>
+                  <li>✓ Kashmir Family Tour Packages</li>
+                  <li>✓ North India Family Holiday Packages</li>
+                  <li>✓ Customized North India Tour Packages</li>
+                  <li>✓ Private Himachal Tour By Car</li>
+                  <li>✓ Kashmir Sightseeing Taxi Package</li>
+                  <li>✓ Punjab Heritage Tour By Taxi</li>
+                  <li>✓ Multi City Taxi Tour From Amritsar</li>
+                  <li>✓ Weekend Getaway Taxi From Amritsar</li>
+                  <li>✓ Cheap Taxi Service Amritsar</li>
+                  <li>✓ Best Outstation Cab Rates Amritsar</li>
+                  <li>✓ Taxi Fare From Amritsar</li>
+                  <li>✓ Outstation Taxi Fare Calculator</li>
+                  <li>✓ Book Taxi Online Amritsar</li>
+                  <li>✓ Instant Cab Booking Amritsar</li>
+                  <li>✓ Advance Taxi Booking Amritsar</li>
+                  <li>✓ Reliable Outstation Cab Service</li>
+                  <li>✓ Safe Family Taxi Service Punjab</li>
+                  <li>✓ Private Driver Hire Amritsar</li>
+                  <li>✓ Car Rental With Driver Amritsar</li>
+                  <li>✓ Round Trip Cab With Driver Punjab</li>
+                  <li>✓ One Way Drop Taxi Amritsar</li>
+                  <li>✓ AC Taxi Service Amritsar</li>
+                  <li>✓ Comfortable Long Distance Taxi Punjab</li>
+                  <li>✓ Tourist Cab Service Punjab</li>
+                  <li>✓ Wedding Car Rental Amritsar</li>
+                  <li>✓ Business Travel Taxi Amritsar</li>
+                  <li>✓ Group Travel Cab Booking Punjab</li>
+                  <li>✓ Customized Taxi Packages Amritsar</li>
+                  <li>✓ Taxi Service Ranjit Avenue Amritsar</li>
+                  <li>✓ Cab Booking Lawrence Road Amritsar</li>
+                  <li>✓ Taxi Service Majitha Road Amritsar</li>
+                  <li>✓ Cab Service Airport Road Amritsar</li>
+                  <li>✓ Taxi Service Hall Bazaar Amritsar</li>
+                  <li>✓ Cab Booking Near Golden Temple Amritsar</li>
+                  <li>✓ Taxi Service Near Amritsar Railway Station</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Premium Fleet */}
+        <section
+          id="services"
+          className="py-24 bg-black text-white overflow-hidden"
+        >
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <p className="text-orange-400 uppercase tracking-[4px] font-semibold mb-4">
+                Our Premium Fleet
+              </p>
+
+              <h2 className="text-4xl md:text-6xl font-black leading-tight mb-6">
+                Luxury Cars For Every Journey
+              </h2>
+
+              <p className="text-gray-300 max-w-3xl mx-auto text-lg">
+                Choose from our premium range of vehicles for airport transfers,
+                local sightseeing, weddings, business trips, and family tours.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {fleet.map((car, index) => (
                 <div
                   key={index}
-                  className="bg-gray-100 rounded-2xl px-5 py-4 font-medium hover:bg-orange-100 transition"
+                  className="bg-white/10 backdrop-blur-md border border-white/10 rounded-[30px] overflow-hidden hover:-translate-y-2 transition duration-300 shadow-2xl"
                 >
-                  ✓ {service}
+                  <div className="relative h-72 overflow-hidden">
+                    <img
+                      src={car.image}
+                      alt={car.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                    />
+
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-5 py-2 rounded-full text-sm font-semibold tracking-wide border border-orange-400">
+                      SEHGAL TRAVELS
+                    </div>
+                  </div>
+
+                  <div className="p-6 text-center">
+                    <h3 className="text-2xl font-bold mb-3">{car.name}</h3>
+
+                    <p className="text-gray-300 mb-6">
+                      Clean interiors, professional drivers, and premium comfort
+                      for your journey.
+                    </p>
+
+                    <div className="relative mt-4">
+                      <span className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-50"></span>
+                      <a
+                        href={
+                          index === 0
+                            ? "tel:+919779150658"
+                            : "tel:+917814635511"
+                        }
+                        className="relative block bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-full font-semibold w-full text-center shadow-lg shadow-orange-500/50"
+                      >
+                        Book Now
+                      </a>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-{/* SEO Content Section */}
-<section className="py-24 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4 md:px-8">
+        </section>
 
-    <div className="text-center mb-14">
-      <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
-        Best Taxi Service In Punjab
-      </p>
+        {/* Packages */}
+        <section id="packages" className="py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
+                Popular Packages
+              </p>
 
-      <h2 className="text-4xl md:text-5xl font-black mb-6">
-        Affordable Cab Booking & Luxury Taxi Services
-      </h2>
+              <h2 className="text-4xl md:text-5xl font-black">
+                Best Holiday Destinations
+              </h2>
+            </div>
 
-      <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-        Sehgal Travels is one of the leading taxi service providers in Amritsar Punjab offering airport taxi booking, Innova Crysta rentals, Golden Temple taxi service, outstation cab booking, Punjab tour packages, Chandigarh to Amritsar cab service, and luxury transportation services with professional drivers and affordable pricing.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      <div className="bg-white rounded-3xl p-8 shadow-md">
-        <h3 className="text-2xl font-bold mb-5">
-          Popular Taxi Services
-        </h3>
-
-        <ul className="space-y-3 text-gray-700 leading-relaxed">
-          <li>✓ Taxi Service In Amritsar</li>
-          <li>✓ Cab Booking Amritsar</li>
-          <li>✓ Airport Taxi Amritsar</li>
-          <li>✓ Innova Crysta On Rent Punjab</li>
-          <li>✓ Chandigarh To Amritsar Cab</li>
-          <li>✓ Golden Temple Taxi Service</li>
-          <li>✓ Outstation Cab Punjab</li>
-          <li>✓ One Way Taxi Punjab</li>
-          <li>✓ Round Trip Cab Service</li>
-          <li>✓ Luxury Taxi Service Punjab</li>
-          <li>✓ Wedding Car Rental Amritsar</li>
-          <li>✓ 24/7 Taxi Service Amritsar</li>
-          <li>✓ Family Tour Taxi Punjab</li>
-          <li>✓ Corporate Cab Service</li>
-          <li>✓ Punjab Sightseeing Taxi</li>
-          <li>✓ Local Cab Service Amritsar</li>
-          <li>✓ Cheap Taxi Service Punjab</li>
-          <li>✓ Best Travel Agency Amritsar</li>
-          <li>✓ Tempo Traveller Booking Punjab</li>
-          <li>✓ Taxi For Golden Temple Visit</li>
-        </ul>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 shadow-md">
-        <h3 className="text-2xl font-bold mb-5">
-          Punjab & North India Routes
-        </h3>
-
-        <ul className="space-y-3 text-gray-700 leading-relaxed">
-          <li>✓ Amritsar To Chandigarh Taxi</li>
-          <li>✓ Amritsar To Delhi Cab</li>
-          <li>✓ Amritsar To Katra Taxi</li>
-          <li>✓ Amritsar To Dharamshala Cab</li>
-          <li>✓ Amritsar To Dalhousie Taxi</li>
-          <li>✓ Amritsar To Manali Cab</li>
-          <li>✓ Punjab Himachal Tour Packages</li>
-          <li>✓ Kashmir Tour Taxi Service</li>
-          <li>✓ Vaishno Devi Taxi Booking</li>
-          <li>✓ Airport Pickup Amritsar</li>
-          <li>✓ Airport Drop Taxi Punjab</li>
-          <li>✓ Cab Booking Near Golden Temple</li>
-          <li>✓ Taxi Service Near Amritsar Airport</li>
-          <li>✓ Innova Taxi Booking Punjab</li>
-          <li>✓ SUV Cab Rental Punjab</li>
-          <li>✓ Luxury Car Rental Amritsar</li>
-          <li>✓ Cab Service In Punjab</li>
-          <li>✓ Online Taxi Booking Amritsar</li>
-          <li>✓ North India Tour Packages</li>
-          <li>✓ Punjab Holiday Packages</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-      {/* Premium Fleet */}
-      <section id="services" className="py-24 bg-black text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <p className="text-orange-400 uppercase tracking-[4px] font-semibold mb-4">
-              Our Premium Fleet
-            </p>
-
-            <h2 className="text-4xl md:text-6xl font-black leading-tight mb-6">
-              Luxury Cars For Every Journey
-            </h2>
-
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Choose from our premium range of vehicles for airport transfers,
-              local sightseeing, weddings, business trips, and family tours.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {fleet.map((car, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-md border border-white/10 rounded-[30px] overflow-hidden hover:-translate-y-2 transition duration-300 shadow-2xl"
-              >
-                <div className="relative h-72 overflow-hidden">
-                  <img
-                    src={car.image}
-                    alt={car.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover hover:scale-110 transition duration-500"
-                  />
-
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-5 py-2 rounded-full text-sm font-semibold tracking-wide border border-orange-400">
-                    SEHGAL TRAVELS
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {packages.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-[30px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group"
+                >
+                  <div className="overflow-hidden h-72">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
                   </div>
-                </div>
 
-                <div className="p-6 text-center">
-                  <h3 className="text-2xl font-bold mb-3">{car.name}</h3>
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-2xl font-bold">{item.title}</h3>
+                      <span className="text-sm bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">
+                        {item.days}
+                      </span>
+                    </div>
 
-                  <p className="text-gray-300 mb-6">
-                    Clean interiors, professional drivers, and premium comfort
-                    for your journey.
-                  </p>
+                    <p className="text-gray-600 mb-6">
+                      Enjoy premium stays, sightseeing, and unforgettable
+                      moments.
+                    </p>
 
-                  <div className="relative mt-4">
-                    <span className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-50"></span>
-                    <a
-                      href={index === 0 ? 'tel:+919779150658' : 'tel:+917814635511'}
-                      className="relative block bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-full font-semibold w-full text-center shadow-lg shadow-orange-500/50"
+                    <button
+                      onClick={() => setShowContact(true)}
+                      className="w-full bg-black text-white py-4 rounded-2xl hover:bg-orange-500 transition font-semibold"
                     >
-                      Book Now
-                    </a>
+                      View Details
+                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Packages */}
-      <section id="packages" className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
-              Popular Packages
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-black">
-              Best Holiday Destinations
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packages.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-[30px] overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group"
-              >
-                <div className="overflow-hidden h-72">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  />
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-bold">{item.title}</h3>
-                    <span className="text-sm bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">
-                      {item.days}
-                    </span>
+        {/* Tourist Visa Services Section */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-14">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
+                International Travel
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Tourist Visa Services
+              </h2>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+                Planning an international trip? Sehgal Travels provides expert
+                tourist visa assistance for 40+ countries. From UAE and Schengen
+                to USA, UK, Canada, Australia, Thailand and more — we handle
+                everything so you can focus on packing.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-14">
+              {[
+                { code: "ae", name: "UAE" },
+                { code: "th", name: "Thailand" },
+                { code: "sg", name: "Singapore" },
+                { code: "gb", name: "UK" },
+                { code: "us", name: "USA" },
+                { code: "ca", name: "Canada" },
+                { code: "au", name: "Australia" },
+                { code: "fr", name: "Schengen" },
+                { code: "jp", name: "Japan" },
+                { code: "mv", name: "Maldives" },
+                { code: "my", name: "Malaysia" },
+                { code: "tr", name: "Turkey" },
+                { code: "id", name: "Indonesia" },
+                { code: "vn", name: "Vietnam" },
+                { code: "lk", name: "Sri Lanka" },
+                { code: "np", name: "Nepal" },
+                { code: "nz", name: "New Zealand" },
+                { code: "za", name: "South Africa" },
+              ].map((c, i) => (
+                <Link
+                  key={i}
+                  to="/tourist-visa"
+                  className="bg-white border border-gray-100 hover:border-orange-300 hover:shadow-lg transition duration-300 rounded-2xl overflow-hidden flex flex-col items-center group"
+                >
+                  <div className="w-full h-20 overflow-hidden bg-gray-50">
+                    <img
+                      src={`https://flagcdn.com/w160/${c.code}.png`}
+                      alt={`${c.name} flag`}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
                   </div>
-
-                  <p className="text-gray-600 mb-6">
-                    Enjoy premium stays, sightseeing, and unforgettable moments.
-                  </p>
-
-                  <button
-                    onClick={() => setShowContact(true)}
-                    className="w-full bg-black text-white py-4 rounded-2xl hover:bg-orange-500 transition font-semibold"
-                  >
-                    View Details
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tourist Visa Services Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-14">
-            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">International Travel</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Tourist Visa Services</h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              Planning an international trip? Sehgal Travels provides expert tourist visa assistance for 40+ countries. From UAE and Schengen to USA, UK, Canada, Australia, Thailand and more — we handle everything so you can focus on packing.
-            </p>
-          </div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-14">
-            {[
-              { code: 'ae', name: 'UAE' },
-              { code: 'th', name: 'Thailand' },
-              { code: 'sg', name: 'Singapore' },
-              { code: 'gb', name: 'UK' },
-              { code: 'us', name: 'USA' },
-              { code: 'ca', name: 'Canada' },
-              { code: 'au', name: 'Australia' },
-              { code: 'fr', name: 'Schengen' },
-              { code: 'jp', name: 'Japan' },
-              { code: 'mv', name: 'Maldives' },
-              { code: 'my', name: 'Malaysia' },
-              { code: 'tr', name: 'Turkey' },
-              { code: 'id', name: 'Indonesia' },
-              { code: 'vn', name: 'Vietnam' },
-              { code: 'lk', name: 'Sri Lanka' },
-              { code: 'np', name: 'Nepal' },
-              { code: 'nz', name: 'New Zealand' },
-              { code: 'za', name: 'South Africa' },
-            ].map((c, i) => (
+                  <span className="py-2.5 px-2 font-semibold text-gray-800 text-xs text-center group-hover:text-orange-500 transition">
+                    {c.name}
+                  </span>
+                </Link>
+              ))}
               <Link
-                key={i}
                 to="/tourist-visa"
-                className="bg-white border border-gray-100 hover:border-orange-300 hover:shadow-lg transition duration-300 rounded-2xl overflow-hidden flex flex-col items-center group"
+                className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:from-orange-600 hover:to-orange-700 transition duration-300 min-h-[96px]"
               >
-                <div className="w-full h-20 overflow-hidden bg-gray-50">
-                  <img
-                    src={`https://flagcdn.com/w160/${c.code}.png`}
-                    alt={`${c.name} flag`}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                  />
-                </div>
-                <span className="py-2.5 px-2 font-semibold text-gray-800 text-xs text-center group-hover:text-orange-500 transition">
-                  {c.name}
+                <span className="text-white text-3xl font-black">40+</span>
+                <span className="text-orange-100 text-xs font-semibold text-center px-2">
+                  More Countries
                 </span>
               </Link>
-            ))}
-            <Link
-              to="/tourist-visa"
-              className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:from-orange-600 hover:to-orange-700 transition duration-300 min-h-[96px]"
-            >
-              <span className="text-white text-3xl font-black">40+</span>
-              <span className="text-orange-100 text-xs font-semibold text-center px-2">More Countries</span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: '📋', title: 'Document Assistance', desc: 'We provide a complete checklist and help you prepare every document needed for a smooth visa application.' },
-              { icon: '⚡', title: 'Fast Processing', desc: 'We file your application promptly and track its status — ensuring you receive your visa well before your travel date.' },
-              { icon: '✅', title: 'High Approval Rate', desc: 'Our experienced team ensures your application is complete and correct, maximizing your chances of approval.' },
-            ].map((item, i) => (
-              <div key={i} className="bg-gray-50 rounded-3xl p-7 flex gap-5 items-start">
-                <span className="text-4xl">{item.icon}</span>
-                <div>
-                  <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/tourist-visa"
-              className="bg-orange-500 hover:bg-orange-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-block"
-            >
-              View All Countries & Apply →
-            </Link>
-            <a
-              href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20tourist%20visa%20assistance."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-flex items-center justify-center gap-3"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              WhatsApp for Visa Enquiry
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-14">
-            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">FAQ</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Frequently Asked Questions</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Everything you need to know about our taxi and cab services in Amritsar, Punjab.
-            </p>
-          </div>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden">
-                <button
-                  className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 hover:bg-orange-50 transition"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  icon: "📋",
+                  title: "Document Assistance",
+                  desc: "We provide a complete checklist and help you prepare every document needed for a smooth visa application.",
+                },
+                {
+                  icon: "⚡",
+                  title: "Fast Processing",
+                  desc: "We file your application promptly and track its status — ensuring you receive your visa well before your travel date.",
+                },
+                {
+                  icon: "✅",
+                  title: "High Approval Rate",
+                  desc: "Our experienced team ensures your application is complete and correct, maximizing your chances of approval.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-gray-50 rounded-3xl p-7 flex gap-5 items-start"
                 >
-                  <span>{faq.q}</span>
-                  <span className={`text-orange-500 text-2xl ml-4 transition-transform duration-200 ${openFaq === index ? 'rotate-45' : ''}`}>+</span>
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-5 pt-4 text-gray-600 leading-relaxed border-t border-gray-100">
-                    {faq.a}
+                  <span className="text-4xl">{item.icon}</span>
+                  <div>
+                    <h3 className="font-bold text-xl mb-2">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Preview Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">Travel Tips & Guides</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Latest From Our Blog</h2>
-            <p className="text-gray-600 text-lg">Helpful guides, routes, and tips for your Punjab travel experience.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {blogPosts.map((post, index) => (
-              <Link key={index} to={post.href} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group block">
-                <div className="h-48 overflow-hidden">
-                  <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                 </div>
-                <div className="p-5">
-                  <span className="text-xs text-orange-500 font-semibold uppercase tracking-widest">{post.category}</span>
-                  <h3 className="text-base font-bold mt-2 mb-3 text-gray-900 group-hover:text-orange-500 transition leading-snug">{post.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{post.excerpt}</p>
-                </div>
+              ))}
+            </div>
+            <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/tourist-visa"
+                className="bg-orange-500 hover:bg-orange-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-block"
+              >
+                View All Countries & Apply →
               </Link>
-            ))}
+              <a
+                href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20tourist%20visa%20assistance."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 transition text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg inline-flex items-center justify-center gap-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp for Visa Enquiry
+              </a>
+            </div>
           </div>
-          <div className="text-center mt-12">
-            <Link to="/blog" className="inline-block bg-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg">
-              View All Articles →
-            </Link>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-14">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
+                FAQ
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Everything you need to know about our taxi and cab services in
+                Amritsar, Punjab.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border border-gray-200 rounded-2xl overflow-hidden"
+                >
+                  <button
+                    className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 hover:bg-orange-50 transition"
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  >
+                    <span>{faq.q}</span>
+                    <span
+                      className={`text-orange-500 text-2xl ml-4 transition-transform duration-200 ${openFaq === index ? "rotate-45" : ""}`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-6 pb-5 pt-4 text-gray-600 leading-relaxed border-t border-gray-100">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop"
-          alt="Adventure"
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/* Blog Preview Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">
+                Travel Tips & Guides
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Latest From Our Blog
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Himachal getaways, international trip planning, and flight-ticket
+                guides.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {blogPosts.map((post, index) => (
+                <Link
+                  key={index}
+                  to={post.href}
+                  className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition group block"
+                >
+                  <div className="h-48 overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <span className="text-xs text-orange-500 font-semibold uppercase tracking-widest">
+                      {post.category}
+                    </span>
+                    <h3 className="text-base font-bold mt-2 mb-3 text-gray-900 group-hover:text-orange-500 transition leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <Link
+                to="/blog"
+                className="inline-block bg-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg"
+              >
+                View All Articles →
+              </Link>
+            </div>
+          </div>
+        </section>
 
-        <div className="absolute inset-0 bg-black/60"></div>
+        {/* CTA Section */}
+        <section className="relative py-24 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop"
+            alt="Adventure"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center px-4 text-white">
-          <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-            Ready For Your Next Adventure?
-          </h2>
+          <div className="absolute inset-0 bg-black/60"></div>
 
-          <p className="text-lg md:text-xl text-gray-200 mb-10">
-            Let Sehgal Travels create unforgettable journeys for you and your family.
-          </p>
-
-          <button className="mt-6 bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl">
-            Book Your Trip
-          </button>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-orange-50">
-          <div className="max-w-5xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-14">
-            <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-3">
-              Get In Touch
-            </p>
-            <h2 className="text-4xl md:text-5xl font-black mb-4">
-              Let's Plan Your Journey
+          <div className="relative z-10 max-w-5xl mx-auto text-center px-4 text-white">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+              Ready For Your Next Adventure?
             </h2>
-            <p className="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
-              Reach out to Sehgal Travels for customized travel packages, bookings, and travel assistance.
+
+            <p className="text-lg md:text-xl text-gray-200 mb-10">
+              Let Sehgal Travels create unforgettable journeys for you and your
+              family.
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {/* Phone */}
-            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
-                📞
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Phone</p>
-                <p className="text-gray-700 font-medium">
-                  <a href="tel:+917814635511" className="hover:text-orange-500 transition">+91 7814635511</a>
-                </p>
-                <p className="text-gray-700 font-medium mt-1">
-                  <a href="tel:+919779150658" className="hover:text-orange-500 transition">+91 9779150658</a>
-                </p>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
-                ✉️
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Email</p>
-                <a
-                  href="mailto:info@sehgaltravels.com"
-                  className="text-blue-600 underline hover:text-blue-800 transition font-medium break-all"
-                >
-                  info@sehgaltravels.com
-                </a>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
-                📍
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">Location</p>
-                <a
-                  href="https://maps.app.goo.gl/UBLX9SuqNgzD1BzaA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-700 font-medium leading-relaxed hover:text-orange-500 transition underline underline-offset-2"
-                >
-                  1120, Hussainpura<br />
-                  Amritsar – 143001<br />
-                  Punjab, India
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-black text-white py-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img
-              src={sehgalLogo}
-              alt="Sehgal Travels Logo"
-              width={48}
-              height={48}
-              loading="lazy"
-              decoding="async"
-              className="w-12 h-12 rounded-full object-cover border-2 border-orange-400 flex-shrink-0"
-            />
-            <div className="leading-tight">
-              <span className="block text-2xl font-extrabold tracking-tight">Sehgal Travels</span>
-              <span className="block text-xs text-orange-400 font-medium tracking-widest uppercase mt-0.5">
-                Making Every Journey Memorable
-              </span>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-6 text-gray-300 text-sm">
-            <a href="#home" className="hover:text-orange-400">Home</a>
-            <a href="#services" className="hover:text-orange-400">Services</a>
-            <a href="#packages" className="hover:text-orange-400">Packages</a>
-            <Link to="/tourist-visa" className="hover:text-orange-400">Visa Services</Link>
-            <Link to="/blog" className="hover:text-orange-400">Blog</Link>
-            <Link to="/contact" className="hover:text-orange-400">Contact</Link>
-          </div>
-        </div>
-
-        {/* Copyright Bar */}
-        <div className="border-t border-white/10 mt-8 pt-6">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
-            <p>© {new Date().getFullYear()} Sehgal Travels. All rights reserved.</p>
-            <p>Designed &amp; Developed with ❤️ for Sehgal Travels</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* WhatsApp Floating Button - Desktop Only */}
-      <a
-        href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20travel%20assistance."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hidden md:flex fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full items-center justify-center shadow-2xl shadow-green-500/40 transition hover:scale-110"
-        aria-label="Chat on WhatsApp"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-        </svg>
-      </a>
-
-      {/* Floating Mobile CTA */}
-      <FloatingCTA />
-
-      {/* Contact Popup */}
-      {showContact && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-          onClick={() => setShowContact(false)}
-        >
-          <div
-            className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm mx-4 relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setShowContact(false)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition text-lg"
-            >
-              ✕
+            <button className="mt-6 bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl">
+              Book Your Trip
             </button>
+          </div>
+        </section>
 
-            <div className="text-center mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl mx-auto mb-4">
-                📞
-              </div>
-              <h3 className="text-2xl font-black text-gray-900">Call Us</h3>
-              <p className="text-gray-500 text-sm mt-1">Tap a number to dial directly</p>
+        {/* Contact */}
+        <section
+          id="contact"
+          className="py-24 bg-gradient-to-br from-gray-50 to-orange-50"
+        >
+          <div className="max-w-5xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-14">
+              <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-3">
+                Get In Touch
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black mb-4">
+                Let's Plan Your Journey
+              </h2>
+              <p className="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+                Reach out to Sehgal Travels for customized travel packages,
+                bookings, and travel assistance.
+              </p>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <a
-                href="tel:+919779150658"
-                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
-              >
-                <span className="text-gray-800 font-semibold text-lg">+91 9779150658</span>
-                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
-              </a>
-              <a
-                href="tel:+917814635511"
-                className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
-              >
-                <span className="text-gray-800 font-semibold text-lg">+91 7814635511</span>
-                <span className="text-orange-500 text-xl group-hover:scale-110 transition">→</span>
-              </a>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {/* Phone */}
+              <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                  📞
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">
+                    Phone
+                  </p>
+                  <p className="text-gray-700 font-medium">
+                    <a
+                      href="tel:+917814635511"
+                      className="hover:text-orange-500 transition"
+                    >
+                      +91 7814635511
+                    </a>
+                  </p>
+                  <p className="text-gray-700 font-medium mt-1">
+                    <a
+                      href="tel:+919779150658"
+                      className="hover:text-orange-500 transition"
+                    >
+                      +91 9779150658
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                  ✉️
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">
+                    Email
+                  </p>
+                  <a
+                    href="mailto:info@sehgaltravels.com"
+                    className="text-blue-600 underline hover:text-blue-800 transition font-medium break-all"
+                  >
+                    info@sehgaltravels.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Location */}
+              <div className="bg-white rounded-3xl p-7 shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+                  📍
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-orange-500 font-semibold mb-2">
+                    Location
+                  </p>
+                  <a
+                    href="https://maps.app.goo.gl/UBLX9SuqNgzD1BzaA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-700 font-medium leading-relaxed hover:text-orange-500 transition underline underline-offset-2"
+                  >
+                    1120, Hussainpura
+                    <br />
+                    Amritsar – 143001
+                    <br />
+                    Punjab, India
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  </>
-);
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-black text-white py-10">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <img
+                src={sehgalLogo}
+                alt="Sehgal Travels Logo"
+                width={48}
+                height={48}
+                loading="lazy"
+                decoding="async"
+                className="w-12 h-12 rounded-full object-cover border-2 border-orange-400 flex-shrink-0"
+              />
+              <div className="leading-tight">
+                <span className="block text-2xl font-extrabold tracking-tight">
+                  Sehgal Travels
+                </span>
+                <span className="block text-xs text-orange-400 font-medium tracking-widest uppercase mt-0.5">
+                  Making Every Journey Memorable
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-6 text-gray-300 text-sm">
+              <a href="#home" className="hover:text-orange-400">
+                Home
+              </a>
+              <a href="#services" className="hover:text-orange-400">
+                Services
+              </a>
+              <a href="#packages" className="hover:text-orange-400">
+                Packages
+              </a>
+              <Link to="/tourist-visa" className="hover:text-orange-400">
+                Visa Services
+              </Link>
+              <Link to="/blog" className="hover:text-orange-400">
+                Blog
+              </Link>
+              <Link to="/contact" className="hover:text-orange-400">
+                Contact
+              </Link>
+            </div>
+          </div>
+
+          {/* Copyright Bar */}
+          <div className="border-t border-white/10 mt-8 pt-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
+              <p>
+                © {new Date().getFullYear()} Sehgal Travels. All rights
+                reserved.
+              </p>
+              <p>Designed &amp; Developed with ❤️ for Sehgal Travels</p>
+            </div>
+          </div>
+        </footer>
+
+        {/* WhatsApp Floating Button - Desktop Only */}
+        <a
+          href="https://wa.me/919779150658?text=Hello%20Sehgal%20Travels%2C%20I%20need%20travel%20assistance."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full items-center justify-center shadow-2xl shadow-green-500/40 transition hover:scale-110"
+          aria-label="Chat on WhatsApp"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-7 h-7"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+        </a>
+
+        {/* Floating Mobile CTA */}
+        <FloatingCTA />
+
+        {/* Contact Popup */}
+        {showContact && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowContact(false)}
+          >
+            <div
+              className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm mx-4 relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowContact(false)}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition text-lg"
+              >
+                ✕
+              </button>
+
+              <div className="text-center mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl mx-auto mb-4">
+                  📞
+                </div>
+                <h3 className="text-2xl font-black text-gray-900">Call Us</h3>
+                <p className="text-gray-500 text-sm mt-1">
+                  Tap a number to dial directly
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <a
+                  href="tel:+919779150658"
+                  className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
+                >
+                  <span className="text-gray-800 font-semibold text-lg">
+                    +91 9779150658
+                  </span>
+                  <span className="text-orange-500 text-xl group-hover:scale-110 transition">
+                    →
+                  </span>
+                </a>
+                <a
+                  href="tel:+917814635511"
+                  className="flex items-center justify-between bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-2xl px-5 py-4 transition group"
+                >
+                  <span className="text-gray-800 font-semibold text-lg">
+                    +91 7814635511
+                  </span>
+                  <span className="text-orange-500 text-xl group-hover:scale-110 transition">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }

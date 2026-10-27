@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import sehgalLogo from '../assets/sehgal-logo.png';
+import { destinationBlogPosts } from './blogs/DestinationTravelBlogs';
 
 const posts = [
   {
@@ -38,18 +40,29 @@ const posts = [
     href: '/blog/innova-crysta-rent-punjab',
     readTime: '4 min read',
   },
+  ...destinationBlogPosts.map((post) => ({
+    title: post.title,
+    category: post.category,
+    date: 'Oct 2026',
+    excerpt: post.excerpt,
+    image: post.image,
+    href: `/blog/${post.slug}`,
+    readTime: '4 min read',
+  })),
 ];
 
 export default function Blog() {
+  const [showAllPosts, setShowAllPosts] = useState(false);
+
   return (
     <>
       <Helmet>
-        <title>Travel Blog – Taxi Tips, Routes & Punjab Guides | Sehgal Travels</title>
-        <meta name="description" content="Read travel guides, taxi fare comparisons, route tips, and sightseeing guides for Amritsar and Punjab by Sehgal Travels." />
+        <title>Travel Blog – Himachal, International Trips & Flight Guides | Sehgal Travels</title>
+        <meta name="description" content="Explore detailed Himachal and romantic getaway itineraries, Spiti guides, international trip checklists, flight-ticket advice, and taxi travel tips from Sehgal Travels." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://sehgaltravels.com/blog" />
         <meta property="og:title" content="Travel Blog | Sehgal Travels" />
-        <meta property="og:description" content="Taxi tips, route guides, and travel advice for Amritsar and Punjab." />
+        <meta property="og:description" content="Himachal itineraries, international travel planning, flight-ticket guides, and practical trip advice." />
         <meta property="og:url" content="https://sehgaltravels.com/blog" />
       </Helmet>
 
@@ -72,14 +85,14 @@ export default function Blog() {
           <div className="text-center mb-16">
             <p className="text-orange-500 uppercase tracking-[4px] font-semibold mb-4">Travel Tips & Guides</p>
             <h1 className="text-4xl md:text-6xl font-black mb-6">Our Travel Blog</h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Taxi fare guides, sightseeing tips, route comparisons, and travel advice for Amritsar and Punjab.
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Detailed Himachal and romantic getaways, Spiti tours, international trip planning, and flight-ticket guides with practical checklists and current verification tips.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div id="blog-post-grid" className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {posts.map((post, i) => (
-              <a key={i} href={post.href} className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition group">
+              <a key={i} href={post.href} className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition group ${i >= 6 && !showAllPosts ? 'hidden sm:block' : ''}`}>
                 <div className="h-64 overflow-hidden">
                   <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                 </div>
@@ -95,10 +108,19 @@ export default function Blog() {
               </a>
             ))}
           </div>
+          <button
+            type="button"
+            className="sm:hidden mt-8 w-full rounded-lg border border-orange-300 bg-white px-5 py-3 font-semibold text-orange-600 hover:bg-orange-50 transition"
+            aria-expanded={showAllPosts}
+            aria-controls="blog-post-grid"
+            onClick={() => setShowAllPosts(!showAllPosts)}
+          >
+            {showAllPosts ? 'Show fewer articles' : `Show all ${posts.length} articles`}
+          </button>
         </div>
       </main>
 
-      <footer className="bg-black text-white py-8 text-center text-sm text-gray-500">
+      <footer className="bg-black py-8 text-center text-sm text-gray-500">
         <p>© {new Date().getFullYear()} Sehgal Travels. All rights reserved.</p>
       </footer>
     </>
