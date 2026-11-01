@@ -7,9 +7,9 @@ const articleSchema = {
   headline: "Golden Temple Tour by Cab: Visitor's Complete Guide",
   description: 'A complete guide to visiting the Golden Temple in Amritsar by private cab — timings, nearby attractions, parking tips, and cab booking advice.',
   author: { '@type': 'Organization', name: 'Sehgal Travels' },
-  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://sehgaltravels.com' },
+  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://www.sehgaltravels.com' },
   datePublished: '2025-05-01',
-  url: 'https://sehgaltravels.com/blog/golden-temple-tour-guide',
+  url: 'https://www.sehgaltravels.com/blog/golden-temple-tour-guide',
 };
 
 export default function GoldenTempleTour() {
@@ -20,10 +20,10 @@ export default function GoldenTempleTour() {
         <meta name="description" content="Plan your Golden Temple visit with a private cab in Amritsar. Best timings, nearby attractions, parking tips, and how to book a reliable taxi for your Golden Temple tour." />
         <meta name="keywords" content="Golden Temple taxi service, Golden Temple tour Amritsar, cab near Golden Temple, taxi for Golden Temple visit, Golden Temple cab booking Amritsar, Harmandir Sahib taxi" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sehgaltravels.com/blog/golden-temple-tour-guide" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/blog/golden-temple-tour-guide" />
         <meta property="og:title" content="Golden Temple Tour by Cab: Complete Visitor Guide" />
         <meta property="og:description" content="Everything you need to know about visiting the Golden Temple by private cab — timings, nearby spots, and booking tips." />
-        <meta property="og:url" content="https://sehgaltravels.com/blog/golden-temple-tour-guide" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/blog/golden-temple-tour-guide" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 

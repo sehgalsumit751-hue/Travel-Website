@@ -746,11 +746,11 @@ export function DestinationTravelBlogPost() {
         <title>{post.title} | Sehgal Travels</title>
         <meta name="description" content={post.excerpt} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://sehgaltravels.com${path}`} />
+        <link rel="canonical" href={`https://www.sehgaltravels.com${path}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${post.title} | Sehgal Travels`} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:url" content={`https://sehgaltravels.com${path}`} />
+        <meta property="og:url" content={`https://www.sehgaltravels.com${path}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -759,9 +759,9 @@ export function DestinationTravelBlogPost() {
             description: post.excerpt,
             image: post.image,
             author: { '@type': 'Organization', name: 'Sehgal Travels' },
-            publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://sehgaltravels.com' },
+            publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://www.sehgaltravels.com' },
             datePublished: '2026-10-27',
-            mainEntityOfPage: `https://sehgaltravels.com${path}`,
+            mainEntityOfPage: `https://www.sehgaltravels.com${path}`,
           })}
         </script>
       </Helmet>

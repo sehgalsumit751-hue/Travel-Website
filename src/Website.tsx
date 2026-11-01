@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -12,7 +12,10 @@ const localBusinessSchema = {
   name: "Sehgal Travels",
   description:
     "Premium taxi and cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, Innova Crysta rentals, outstation cabs, and luxury travel services available 24/7.",
-  url: "https://sehgaltravels.com",
+  url: "https://www.sehgaltravels.com",
+  image: "https://www.sehgaltravels.com/sehgal-logo.png",
+  logo: "https://www.sehgaltravels.com/sehgal-logo.png",
+  hasMap: "https://maps.app.goo.gl/UBLX9SuqNgzD1BzaA",
   telephone: ["+919779150658", "+917814635511"],
   email: "info@sehgaltravels.com",
   address: {
@@ -49,59 +52,41 @@ const localBusinessSchema = {
   ],
 };
 
+const faqs = [
+  {
+    q: "What taxi services does Sehgal Travels offer in Amritsar?",
+    a: "We offer airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.",
+  },
+  {
+    q: "How do I book a cab in Amritsar with Sehgal Travels?",
+    a: "Simply call us at +91 9779150658 or +91 7814635511. Our team is available 24/7 for local, outstation, and airport taxi bookings.",
+  },
+  {
+    q: "What is the taxi fare from Amritsar to Chandigarh?",
+    a: "Fares range from ₹2,500 to ₹4,500 depending on vehicle type. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Call us for exact pricing.",
+  },
+  {
+    q: "Do you provide airport pickup and drop at Amritsar Airport?",
+    a: "Yes! We offer 24/7 airport pickup and drop at Sri Guru Ram Dass Jee International Airport (ATQ), Amritsar. Our drivers track flight arrivals for on-time service.",
+  },
+  {
+    q: "Which vehicles are available for hire in Punjab?",
+    a: "Our fleet includes Maruti Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo trips, family tours, and corporate travel.",
+  },
+  {
+    q: "Do you offer one-way cabs from Amritsar to other cities?",
+    a: "Yes! We provide one-way and round-trip taxi services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other North India destinations.",
+  },
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What taxi services does Sehgal Travels offer in Amritsar?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sehgal Travels offers airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How do I book a cab in Amritsar with Sehgal Travels?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Call us directly at +91 9779150658 or +91 7814635511. Our team is available 24/7 to assist with bookings for local, outstation, and airport taxi services across Amritsar and Punjab.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is the taxi fare from Amritsar to Chandigarh?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The fare from Amritsar to Chandigarh ranges from ₹2,500 to ₹4,500 depending on the vehicle. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Contact us at +91 9779150658 for exact pricing.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do you provide airport taxi service at Sri Guru Ram Dass Jee Airport, Amritsar?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, we provide 24/7 airport pickup and drop at Amritsar International Airport (ATQ). Our drivers monitor flight arrivals and ensure on-time pickup for all passengers.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Which vehicles are available for rent in Punjab with Sehgal Travels?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Our fleet includes Maruti Suzuki Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo travelers, families, and corporate groups.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do you offer one-way taxi service from Amritsar to other cities?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, we offer one-way and round-trip cab services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other major destinations across North India.",
-      },
-    },
-  ],
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
 };
 
 export default function SehgalTravelsLandingPage() {
@@ -109,32 +94,14 @@ export default function SehgalTravelsLandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const faqs = [
-    {
-      q: "What taxi services does Sehgal Travels offer in Amritsar?",
-      a: "We offer airport transfers, Golden Temple tours, outstation cabs, luxury car rentals (Innova Crysta, Toyota Hycross, Kia Carens), corporate travel, wedding car rentals, and 24/7 pickup & drop services across Amritsar and Punjab.",
-    },
-    {
-      q: "How do I book a cab in Amritsar with Sehgal Travels?",
-      a: "Simply call us at +91 9779150658 or +91 7814635511. Our team is available 24/7 for local, outstation, and airport taxi bookings.",
-    },
-    {
-      q: "What is the taxi fare from Amritsar to Chandigarh?",
-      a: "Fares range from ₹2,500 to ₹4,500 depending on vehicle type. Sedans (Dzire/Etios) start from ₹2,500, Innova Crysta from ₹3,500. Call us for exact pricing.",
-    },
-    {
-      q: "Do you provide airport pickup and drop at Amritsar Airport?",
-      a: "Yes! We offer 24/7 airport pickup and drop at Sri Guru Ram Dass Jee International Airport (ATQ), Amritsar. Our drivers track flight arrivals for on-time service.",
-    },
-    {
-      q: "Which vehicles are available for hire in Punjab?",
-      a: "Our fleet includes Maruti Dzire, Toyota Etios, Toyota Innova, Innova Crysta, Toyota Hycross, Maruti XL6, and Kia Carens — suitable for solo trips, family tours, and corporate travel.",
-    },
-    {
-      q: "Do you offer one-way cabs from Amritsar to other cities?",
-      a: "Yes! We provide one-way and round-trip taxi services from Amritsar to Chandigarh, Delhi, Dharamshala, Katra, Dalhousie, Manali, and other North India destinations.",
-    },
-  ];
+  useEffect(() => {
+    if (!showContact) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowContact(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [showContact]);
 
   const blogPosts = [
     {
@@ -348,7 +315,7 @@ export default function SehgalTravelsLandingPage() {
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Sehgal Travels" />
-        <link rel="canonical" href="https://sehgaltravels.com/" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/" />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
@@ -358,10 +325,18 @@ export default function SehgalTravelsLandingPage() {
           property="og:description"
           content="Premium taxi & cab services in Amritsar, Punjab. Airport transfers, Golden Temple tours, outstation trips & Innova Crysta rentals. 24/7 service. Call +91 9779150658."
         />
-        <meta property="og:url" content="https://sehgaltravels.com/" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/" />
         <meta property="og:site_name" content="Sehgal Travels" />
         <meta property="og:locale" content="en_IN" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          property="og:image"
+          content="https://www.sehgaltravels.com/sehgal-logo.png"
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:image"
+          content="https://www.sehgaltravels.com/sehgal-logo.png"
+        />
         <meta
           name="twitter:title"
           content="Best Taxi Service in Amritsar Punjab | Sehgal Travels"
@@ -386,7 +361,6 @@ export default function SehgalTravelsLandingPage() {
                 alt="Sehgal Travels Logo"
                 width={56}
                 height={56}
-                fetchPriority="high"
                 decoding="async"
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-orange-400 shadow-md flex-shrink-0"
               />
@@ -459,6 +433,7 @@ export default function SehgalTravelsLandingPage() {
               <a href="#about" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">About</a>
               <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Blog</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="py-3 hover:text-orange-500">Contact</Link>
+              <a href="tel:+917814635511" className="landing-header-call mt-2">Call Now</a>
             </div>
           </nav>
         </header>
@@ -467,8 +442,10 @@ export default function SehgalTravelsLandingPage() {
         <section id="home" className="landing-hero relative flex items-center overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop"
-            alt="Golden Gate Bridge scenic background"
+            alt=""
+            aria-hidden="true"
             loading="eager"
+            fetchPriority="high"
             decoding="async"
             className="landing-hero-image absolute inset-0 w-full h-full object-cover"
           />
@@ -920,7 +897,7 @@ export default function SehgalTravelsLandingPage() {
                     </p>
 
                     <div className="relative mt-4">
-                      <span className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-50"></span>
+                      <span className="absolute inset-0 rounded-full bg-orange-400 motion-safe:animate-ping opacity-50"></span>
                       <a
                         href={
                           index === 0
@@ -1052,7 +1029,7 @@ export default function SehgalTravelsLandingPage() {
               ))}
               <Link
                 to="/tourist-visa"
-                className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:from-orange-600 hover:to-orange-700 transition duration-300 min-h-[96px]"
+                className="bg-black rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-1 hover:opacity-90 transition duration-300 min-h-[96px]"
               >
                 <span className="text-white text-3xl font-black">40+</span>
                 <span className="text-orange-100 text-xs font-semibold text-center px-2">
@@ -1139,18 +1116,25 @@ export default function SehgalTravelsLandingPage() {
                   className="border border-gray-200 rounded-2xl overflow-hidden"
                 >
                   <button
+                    type="button"
                     className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 hover:bg-orange-50 transition"
+                    aria-expanded={openFaq === index}
+                    aria-controls={`faq-answer-${index}`}
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >
                     <span>{faq.q}</span>
                     <span
+                      aria-hidden="true"
                       className={`text-orange-500 text-2xl ml-4 transition-transform duration-200 ${openFaq === index ? "rotate-45" : ""}`}
                     >
                       +
                     </span>
                   </button>
                   {openFaq === index && (
-                    <div className="px-6 pb-5 pt-4 text-gray-600 leading-relaxed border-t border-gray-100">
+                    <div
+                      id={`faq-answer-${index}`}
+                      className="px-6 pb-5 pt-4 text-gray-600 leading-relaxed border-t border-gray-100"
+                    >
                       {faq.a}
                     </div>
                   )}
@@ -1238,9 +1222,12 @@ export default function SehgalTravelsLandingPage() {
               family.
             </p>
 
-            <button className="mt-6 bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl">
+            <a
+              href="#booking"
+              className="inline-block mt-6 bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-full text-lg font-semibold shadow-xl"
+            >
               Book Your Trip
-            </button>
+            </a>
           </div>
         </section>
 
@@ -1419,10 +1406,16 @@ export default function SehgalTravelsLandingPage() {
             onClick={() => setShowContact(false)}
           >
             <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-dialog-title"
               className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm mx-4 relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                type="button"
+                autoFocus
+                aria-label="Close"
                 onClick={() => setShowContact(false)}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition text-lg"
               >
@@ -1433,7 +1426,7 @@ export default function SehgalTravelsLandingPage() {
                 <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl mx-auto mb-4">
                   📞
                 </div>
-                <h3 className="text-2xl font-black text-gray-900">Call Us</h3>
+                <h3 id="contact-dialog-title" className="text-2xl font-black text-gray-900">Call Us</h3>
                 <p className="text-gray-500 text-sm mt-1">
                   Tap a number to dial directly
                 </p>

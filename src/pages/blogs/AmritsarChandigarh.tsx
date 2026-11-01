@@ -7,9 +7,9 @@ const articleSchema = {
   headline: 'Amritsar to Chandigarh Taxi: Fare, Route & Booking Tips',
   description: 'Complete guide to booking a taxi from Amritsar to Chandigarh — fare comparison, distance, best routes, and travel tips.',
   author: { '@type': 'Organization', name: 'Sehgal Travels' },
-  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://sehgaltravels.com' },
+  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://www.sehgaltravels.com' },
   datePublished: '2025-05-01',
-  url: 'https://sehgaltravels.com/blog/amritsar-to-chandigarh-taxi',
+  url: 'https://www.sehgaltravels.com/blog/amritsar-to-chandigarh-taxi',
 };
 
 export default function AmritsarChandigarh() {
@@ -20,10 +20,10 @@ export default function AmritsarChandigarh() {
         <meta name="description" content="Book a cab from Amritsar to Chandigarh with Sehgal Travels. Distance: ~230 km. Fare starts from ₹2,500. One-way & round-trip available. Call +91 9779150658." />
         <meta name="keywords" content="Amritsar to Chandigarh taxi, Chandigarh to Amritsar cab, Amritsar Chandigarh cab fare, taxi Amritsar Chandigarh, cab booking Amritsar to Chandigarh" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sehgaltravels.com/blog/amritsar-to-chandigarh-taxi" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/blog/amritsar-to-chandigarh-taxi" />
         <meta property="og:title" content="Amritsar to Chandigarh Taxi: Fare, Route & Tips" />
         <meta property="og:description" content="Cab from Amritsar to Chandigarh — fare, distance, route, and tips. Starts from ₹2,500." />
-        <meta property="og:url" content="https://sehgaltravels.com/blog/amritsar-to-chandigarh-taxi" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/blog/amritsar-to-chandigarh-taxi" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 

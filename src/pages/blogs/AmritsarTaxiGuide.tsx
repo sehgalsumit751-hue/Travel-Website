@@ -7,9 +7,9 @@ const articleSchema = {
   headline: 'Best Taxi Service in Amritsar: Complete 2025 Guide',
   description: 'A complete guide to booking the best taxi service in Amritsar, Punjab — covering fares, vehicle options, routes, and tips.',
   author: { '@type': 'Organization', name: 'Sehgal Travels' },
-  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://sehgaltravels.com' },
+  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://www.sehgaltravels.com' },
   datePublished: '2025-05-01',
-  url: 'https://sehgaltravels.com/blog/taxi-service-amritsar-guide',
+  url: 'https://www.sehgaltravels.com/blog/taxi-service-amritsar-guide',
 };
 
 export default function AmritsarTaxiGuide() {
@@ -20,10 +20,10 @@ export default function AmritsarTaxiGuide() {
         <meta name="description" content="Looking for the best taxi service in Amritsar? This complete 2025 guide covers cab fares, vehicle options, airport transfers, Golden Temple tours, and outstation trips from Amritsar." />
         <meta name="keywords" content="best taxi service Amritsar, cab booking Amritsar, taxi fare Amritsar, Amritsar cab service, affordable taxi Amritsar, 24/7 cab Amritsar" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sehgaltravels.com/blog/taxi-service-amritsar-guide" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/blog/taxi-service-amritsar-guide" />
         <meta property="og:title" content="Best Taxi Service in Amritsar: Complete 2025 Guide" />
         <meta property="og:description" content="Complete guide to booking a taxi in Amritsar — fares, vehicle options, airport transfers, and outstation trips." />
-        <meta property="og:url" content="https://sehgaltravels.com/blog/taxi-service-amritsar-guide" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/blog/taxi-service-amritsar-guide" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 

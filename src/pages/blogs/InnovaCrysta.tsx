@@ -7,9 +7,9 @@ const articleSchema = {
   headline: 'Innova Crysta on Rent in Punjab: Is It Worth It?',
   description: 'Everything you need to know about hiring an Innova Crysta in Punjab — fare, features, why it is the best vehicle for family trips and outstation travel.',
   author: { '@type': 'Organization', name: 'Sehgal Travels' },
-  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://sehgaltravels.com' },
+  publisher: { '@type': 'Organization', name: 'Sehgal Travels', url: 'https://www.sehgaltravels.com' },
   datePublished: '2025-05-01',
-  url: 'https://sehgaltravels.com/blog/innova-crysta-rent-punjab',
+  url: 'https://www.sehgaltravels.com/blog/innova-crysta-rent-punjab',
 };
 
 export default function InnovaCrysta() {
@@ -20,10 +20,10 @@ export default function InnovaCrysta() {
         <meta name="description" content="Hire Innova Crysta in Punjab with Sehgal Travels. Best SUV for family trips, airport transfers & outstation. Fare starts from ₹3,500. Available in Amritsar 24/7. Call +91 9779150658." />
         <meta name="keywords" content="Innova Crysta on rent Punjab, Innova Crysta hire Amritsar, Innova Crysta rental Punjab, Toyota Innova Crysta taxi Amritsar, SUV on rent Punjab, Innova Crysta cab booking" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sehgaltravels.com/blog/innova-crysta-rent-punjab" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/blog/innova-crysta-rent-punjab" />
         <meta property="og:title" content="Innova Crysta on Rent in Punjab: Is It Worth It?" />
         <meta property="og:description" content="Why the Innova Crysta is Punjab's most popular family travel cab — fares, features, and booking guide." />
-        <meta property="og:url" content="https://sehgaltravels.com/blog/innova-crysta-rent-punjab" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/blog/innova-crysta-rent-punjab" />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
       </Helmet>
 

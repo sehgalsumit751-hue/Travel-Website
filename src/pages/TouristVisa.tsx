@@ -54,7 +54,6 @@ const steps = [
 
 export default function TouristVisa() {
   const [search, setSearch] = useState('');
-  const [showContact, setShowContact] = useState(false);
 
   const filtered = countries.filter(c =>
     c.name.toLowerCase().includes(search.toLowerCase())
@@ -66,7 +65,8 @@ export default function TouristVisa() {
         <title>Tourist Visa Services for All Countries | Sehgal Travels Amritsar</title>
         <meta name="description" content="Get tourist visa assistance for all countries — UAE, Thailand, UK, USA, Canada, Australia, Schengen and more. Expert visa consultants at Sehgal Travels, Amritsar. Call +91 9779150658." />
         <meta name="keywords" content="tourist visa Amritsar, visa consultant Amritsar, UAE tourist visa, Schengen visa Punjab, UK tourist visa, USA tourist visa, Canada tourist visa, Australia visa, Thailand visa, visa services Punjab, travel visa agent Amritsar, Sehgal Travels visa" />
-        <link rel="canonical" href="https://sehgaltravels.com/tourist-visa" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/tourist-visa" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/tourist-visa" />
         <meta property="og:title" content="Tourist Visa Services for All Countries | Sehgal Travels" />
         <meta property="og:description" content="Expert visa assistance for 40+ countries. UAE, UK, USA, Canada, Schengen & more. Contact Sehgal Travels, Amritsar." />
       </Helmet>
@@ -94,8 +94,11 @@ export default function TouristVisa() {
               <a href="/#packages" className="hover:text-orange-500 transition">Packages</a>
               <a href="/tourist-visa" className="text-orange-500 font-semibold">Visa Services</a>
               <a href="/blog" className="hover:text-orange-500 transition">Blog</a>
-              <a href="/#contact" className="hover:text-orange-500 transition">Contact</a>
+              <a href="/contact" className="hover:text-orange-500 transition">Contact</a>
             </nav>
+            <a href="tel:+919779150658" className="md:hidden bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition">
+              Call Now
+            </a>
           </div>
         </header>
 
@@ -294,7 +297,7 @@ export default function TouristVisa() {
               <a href="/#services" className="hover:text-orange-400">Services</a>
               <a href="/tourist-visa" className="hover:text-orange-400">Visa Services</a>
               <a href="/blog" className="hover:text-orange-400">Blog</a>
-              <a href="/#contact" className="hover:text-orange-400">Contact</a>
+              <a href="/contact" className="hover:text-orange-400">Contact</a>
             </div>
           </div>
           <div className="border-t border-white/10 mt-8 pt-6">

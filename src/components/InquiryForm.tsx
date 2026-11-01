@@ -12,6 +12,7 @@ export const InquiryForm: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [submitted, setSubmitted] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState('');
+  const [phoneError, setPhoneError] = useState('');
   const [formData, setFormData] = useState<FormData>({
     tripType: null,
     destination: '',
@@ -30,10 +31,11 @@ export const InquiryForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phone = formData.phoneNumber.replace(/\D/g, '');
+    // Accept "98765 43210", "+91 98765-43210", "098765 43210", etc.
+    const phone = formData.phoneNumber.replace(/\D/g, '').replace(/^(?:91|0)(?=\d{10}$)/, '');
 
     if (!/^[0-9]{10}$/.test(phone)) {
-      alert('Please enter a valid 10-digit phone number.');
+      setPhoneError('Please enter a valid 10-digit mobile number.');
       return;
     }
 
@@ -106,12 +108,14 @@ export const InquiryForm: React.FC = () => {
             {step === 1 && (
               <div className="space-y-4">
                 <button
+                  type="button"
                   onClick={() => handleTripTypeSelect('One-Way Drop')}
                   className="w-full py-3 px-4 border-2 rounded-lg text-left transition-all hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent font-medium text-gray-700"
                 >
                   One-Way Drop
                 </button>
                 <button
+                  type="button"
                   onClick={() => handleTripTypeSelect('Round Trip')}
                   className="w-full py-3 px-4 border-2 rounded-lg text-left transition-all hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent font-medium text-gray-700"
                 >
@@ -158,21 +162,33 @@ export const InquiryForm: React.FC = () => {
             {step === 3 && (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
+                  <label htmlFor="phone" className="sr-only">Mobile number</label>
                   <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 font-medium border-r border-gray-300 pr-2 py-2">
                     +91
                   </span>
                   <input
                     id="phone"
                     type="tel"
+                    inputMode="tel"
+                    autoComplete="tel-national"
                     autoFocus
                     required
-                    pattern="[0-9]{10}"
+                    aria-invalid={phoneError ? true : undefined}
+                    aria-describedby={phoneError ? 'phone-error' : undefined}
                     value={formData.phoneNumber}
-                    onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, phoneNumber: e.target.value });
+                      setPhoneError('');
+                    }}
                     placeholder="98765 43210"
                     className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none text-gray-800"
                   />
                 </div>
+                {phoneError && (
+                  <p id="phone-error" role="alert" className="text-sm text-red-600">
+                    {phoneError}
+                  </p>
+                )}
                 <div className="flex justify-between items-center mt-4 gap-4">
                   <button
                     type="button"

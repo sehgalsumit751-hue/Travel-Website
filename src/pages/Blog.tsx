@@ -60,10 +60,10 @@ export default function Blog() {
         <title>Travel Blog – Himachal, International Trips & Flight Guides | Sehgal Travels</title>
         <meta name="description" content="Explore detailed Himachal and romantic getaway itineraries, Spiti guides, international trip checklists, flight-ticket advice, and taxi travel tips from Sehgal Travels." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://sehgaltravels.com/blog" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/blog" />
         <meta property="og:title" content="Travel Blog | Sehgal Travels" />
         <meta property="og:description" content="Himachal itineraries, international travel planning, flight-ticket guides, and practical trip advice." />
-        <meta property="og:url" content="https://sehgaltravels.com/blog" />
+        <meta property="og:url" content="https://www.sehgaltravels.com/blog" />
       </Helmet>
 
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">

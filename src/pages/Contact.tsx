@@ -5,10 +5,12 @@ import sehgalLogo from '../assets/sehgal-logo.png';
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setError(false);
     const form = e.currentTarget;
     const data = new FormData(form);
 
@@ -18,10 +20,11 @@ export default function Contact() {
         headers: { Accept: 'application/json' },
         body: data,
       });
-      if (res.ok) {
-        setSubmitted(true);
-        form.reset();
-      }
+      if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
+      setSubmitted(true);
+      form.reset();
+    } catch {
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -32,7 +35,7 @@ export default function Contact() {
       <Helmet>
         <title>Contact Sehgal Travels | Book Taxi & Visa Services | Amritsar</title>
         <meta name="description" content="Contact Sehgal Travels for taxi bookings, visa services, and travel packages in Amritsar. Call +91 9779150658 or fill in the contact form." />
-        <link rel="canonical" href="https://sehgaltravels.com/contact" />
+        <link rel="canonical" href="https://www.sehgaltravels.com/contact" />
       </Helmet>
 
       <div className="bg-white text-gray-900 min-h-screen font-sans">
@@ -60,6 +63,9 @@ export default function Contact() {
               <a href="/blog" className="hover:text-orange-500 transition">Blog</a>
               <a href="/contact" className="text-orange-500 font-semibold">Contact</a>
             </nav>
+            <a href="tel:+919779150658" className="md:hidden bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition">
+              Call Now
+            </a>
           </div>
         </header>
 
@@ -72,6 +78,12 @@ export default function Contact() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Fill in the form below and we'll get back to you shortly. Or call / WhatsApp us directly for instant assistance.
           </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-gray-700 font-medium">
+            <a href="tel:+919779150658" className="hover:text-orange-500 transition">📞 +91 9779150658</a>
+            <a href="tel:+917814635511" className="hover:text-orange-500 transition">📞 +91 7814635511</a>
+            <a href="mailto:info@sehgaltravels.com" className="hover:text-orange-500 transition">✉️ info@sehgaltravels.com</a>
+            <a href="https://maps.app.goo.gl/UBLX9SuqNgzD1BzaA" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition">📍 1120, Hussainpura, Amritsar 143001</a>
+          </div>
         </section>
 
         {/* Contact Grid */}
@@ -103,10 +115,12 @@ export default function Contact() {
                     <input type="text" name="_honey" className="hidden" />
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                      <label htmlFor="contact-name" className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
+                        autoComplete="name"
                         required
                         placeholder="Your full name"
                         className="w-full border-2 border-gray-200 focus:border-orange-500 outline-none rounded-2xl px-5 py-3 text-gray-900 transition"
@@ -114,10 +128,12 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                      <label htmlFor="contact-phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         name="phone"
+                        autoComplete="tel"
                         required
                         placeholder="+91 XXXXX XXXXX"
                         className="w-full border-2 border-gray-200 focus:border-orange-500 outline-none rounded-2xl px-5 py-3 text-gray-900 transition"
@@ -125,18 +141,21 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                      <label htmlFor="contact-email" className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                       <input
+                        id="contact-email"
                         type="email"
                         name="email"
+                        autoComplete="email"
                         placeholder="your@email.com"
                         className="w-full border-2 border-gray-200 focus:border-orange-500 outline-none rounded-2xl px-5 py-3 text-gray-900 transition"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Service Needed</label>
+                      <label htmlFor="contact-service" className="block text-sm font-semibold text-gray-700 mb-2">Service Needed</label>
                       <select
+                        id="contact-service"
                         name="service"
                         className="w-full border-2 border-gray-200 focus:border-orange-500 outline-none rounded-2xl px-5 py-3 text-gray-900 transition bg-white"
                       >
@@ -154,8 +173,9 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
+                      <label htmlFor="contact-message" className="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         required
                         rows={4}
@@ -163,6 +183,13 @@ export default function Contact() {
                         className="w-full border-2 border-gray-200 focus:border-orange-500 outline-none rounded-2xl px-5 py-3 text-gray-900 transition resize-none"
                       />
                     </div>
+
+                    {error && (
+                      <p role="alert" className="rounded-2xl bg-red-50 border border-red-200 px-5 py-3 text-sm text-red-700">
+                        Sorry, your message couldn't be sent. Please try again, or call us at{' '}
+                        <a href="tel:+919779150658" className="font-semibold underline">+91 9779150658</a>.
+                      </p>
+                    )}
 
                     <button
                       type="submit"

@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
-
 .landing-shell {
   --landing-ink: #13283d;
   --landing-navy: #0e2236;
   --landing-gold: #c5a15b;
   --landing-gold-dark: #a8813e;
+  /* Text-safe golds: >= 4.5:1 on white and on navy respectively */
+  --landing-gold-text: #8a6a2f;
+  --landing-gold-light: #e1bd70;
   --landing-copy: #526170;
   color: var(--landing-ink);
   font-family: 'Manrope', 'Segoe UI', sans-serif;
@@ -24,11 +25,16 @@
 
 .landing-shell .bg-orange-500 {
   background-color: var(--landing-gold) !important;
+  color: #15283a;
 }
 
 .landing-shell .text-orange-500,
+.landing-shell .text-orange-600 {
+  color: var(--landing-gold-text) !important;
+}
+
 .landing-shell .text-orange-400 {
-  color: var(--landing-gold-dark) !important;
+  color: var(--landing-gold-light) !important;
 }
 
 .landing-shell .text-orange-300 {
@@ -240,7 +246,7 @@
 
 .landing-booking-kicker {
   margin-bottom: 8px;
-  color: var(--landing-gold-dark);
+  color: var(--landing-gold-text);
 }
 
 .landing-booking .max-w-md {
@@ -256,6 +262,7 @@
 
 .landing-booking .bg-blue-600 {
   background-color: var(--landing-gold) !important;
+  color: #15283a;
 }
 
 .landing-booking .hover\:border-blue-500:hover {

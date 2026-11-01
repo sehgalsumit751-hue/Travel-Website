@@ -12,7 +12,7 @@ export const SeoMeta: React.FC<SeoMetaProps> = ({
   description = "Book premium, reliable, and affordable taxi services in Amritsar with Sehgal Travels. Serving Wagah Border, outstation trips, and local city tours.",
   path = "/"
 }) => {
-  const siteUrl = "https://sehgaltravels.com"; // Replace with your actual domain
+  const siteUrl = "https://www.sehgaltravels.com"; // Replace with your actual domain
   const canonicalUrl = `${siteUrl}${path}`;
 
   // Structured Data (JSON-LD) for LocalBusiness/TaxiService
